@@ -4,7 +4,6 @@ import Routine from './components/Routine/Routine.jsx';
 import './App.css'
 import React, { useState, useEffect } from 'react';
 
-
 function App() { 
   const [routine, setRoutine] = useState(null)
   
@@ -34,8 +33,8 @@ function App() {
   };
 
   return (
-    <> 
-      {!routine ? <Questionnaire getRoutine={getRoutine} /> : <Routine routine={routine} />}
+    <>
+    {!routine ? <Questionnaire getRoutine={getRoutine} /> : <Routine routine={routine} />}
     </>
   )
 }

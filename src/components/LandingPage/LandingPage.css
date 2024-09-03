@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+
+.landing-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("/fondo.png");
+  background-size: cover;
+  background-position: center;
+  color: #E0E0E0;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Chakra Petch', sans-serif;
+  overflow: auto;
+}
+
+.landing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(17 22 36 / 56%);
+  z-index: 1;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.landing-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #000000;
+  text-shadow: 2px 2px 4px #2ce183, -2px -2px 4px #ffee00;
+}
+
+.landing-subtitle {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  color: #2ce183;
+  text-shadow: 1px 1px 2px #2ce183;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+
+.landing-about {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #2ce183;
+  box-shadow: 0 0 10px #2ce183, 0 0 20px #ffee00;
+  transition: all 0.3s ease;
+}
+
+.landing-about:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 15px #ffee00, 0 0 30px #2ce183;
+}
+
+.landing-button {
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: #2ce183;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  box-shadow: 0 0 10px #ffee00;
+}
+
+.landing-button:hover {
+  background-color: #2ce183;
+  color: #ffee00;
+  box-shadow: 0 0 20px #ffee00;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .landing-title {
+    font-size: 2.5rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .landing-about {
+    font-size: 1rem;
+    padding: 15px;
+  }
+
+  .landing-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-title {
+    font-size: 2rem;
+  }
+
+  .landing-subtitle {
+    font-size: 1rem;
+  }
+
+  .landing-about {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .landing-button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
