@@ -1,55 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './Questionnaire.css'
-// Componente Spinner
-const Spinner = () => (
-  <div className="spinner">
-    <div className="spinner-inner"></div>
-  </div>
-);
-
-// Componentes para cada tipo de pregunta
-const OptionsQuestion = ({ question, options, onSelect, selectedAnswer }) => (
-  <div className="question-container">
-    {Array.isArray(options) && options.length > 0 ? (
-      options.map((option, index) => (
-        <button 
-          key={index} 
-          onClick={() => onSelect(option.text)} 
-          className={`option-button ${selectedAnswer === option.text ? 'selected' : ''}`}
-        >
-          {option.text}
-        </button>
-      ))
-    ) : (
-      <p>No hay opciones disponibles.</p>
-    )}
-  </div>
-);
-
-const NumericInputQuestion = ({ question, placeholder, onInput, currentAnswer }) => (
-  <div className="question-container">
-    <input
-      type="number"
-      placeholder={placeholder}
-      onChange={(e) => onInput(e.target.value)}
-      value={currentAnswer || ''}
-      className="numeric-input"
-    />
-  </div>
-);
-
-const TextInputQuestion = ({ question, limit, onInput, currentAnswer }) => (
-  <div className="question-container">
-    <textarea
-      maxLength={limit}
-      onChange={(e) => onInput(e.target.value)}
-      value={currentAnswer || ''}
-      className="text-input"
-      placeholder={`Máximo ${limit} caracteres`}
-    />
-  </div>
-);
+import { getQuestions } from '../../../services/questions/getQuestions';
+import OptionsQuestion from '../components/optionsQuestion/optionsQuestion';
+import NumericInputQuestion from '../components/numericInputQuestion/numericInputQuestion';
+import TextInputQuestion from '../components/textInputQuestion/textInputQuestion';
+import LoadingSpinner from '../../../components/spinner/spinner';
 
 // Componente principal Stepper
 export default function Questionaire({getRoutine}) {
@@ -61,28 +16,19 @@ export default function Questionaire({getRoutine}) {
   const [error, setError] = useState(null);
 
   
-  const fetchInitialData = () => {    
+  const fetchInitialData = async () => {    
     setLoading(true);
-    fetch('http://localhost:3000/questions')
-    .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json(); // Lee el cuerpo de la respuesta como JSON
-      })
-      .then((data) => {
-        setCurrentQuestion(data);
-        setQuestionStack([data]);
-
-      })
-      .catch((err) => {
-        setError('Error al cargar las preguntas iniciales' + err.message);
-      })
-      .finally(()=>{
-        setLoading(false);
+    try {
+      const data = await getQuestions();
+      setCurrentQuestion(data);
+      setQuestionStack([data]);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-    )
   };
+
   useEffect(() => {
     fetchInitialData();
   }, []);
@@ -93,12 +39,9 @@ export default function Questionaire({getRoutine}) {
 
   const handleNext = () => {
     if (currentAnswer === null || currentAnswer === undefined) return;
-
     const newAnswers = [...answers, { questionId: currentQuestion.id, answer: currentAnswer }];
     setAnswers(newAnswers);
-
     let nextQuestion = null;
-
     if (currentQuestion.type === 'options') {
       const selectedOption = currentQuestion.options.find(opt => opt.text === currentAnswer);
       if (selectedOption && selectedOption.next) {
@@ -111,7 +54,6 @@ export default function Questionaire({getRoutine}) {
         nextQuestion = currentQuestion.next;
       }
     }
-
     if (nextQuestion) {
       setQuestionStack([...questionStack, nextQuestion]);
       setCurrentQuestion(nextQuestion);
@@ -137,11 +79,12 @@ export default function Questionaire({getRoutine}) {
       case 'options':
         return (
           <OptionsQuestion 
-            key={question.id}            
-            options={question.options} 
-            onSelect={handleInput} 
-            selectedAnswer={currentAnswer}
-          />
+          key={question.id} 
+          question={question.question}
+          options={question.options} 
+          onSelect={handleInput} 
+          selectedAnswer={currentAnswer}
+        />
         );
       case 'numeric-input':
         return (
@@ -169,7 +112,7 @@ export default function Questionaire({getRoutine}) {
   if (loading) {
     return (
       <div className="stepper-container">
-        <Spinner />
+        <LoadingSpinner />
       </div>
     );
   }
