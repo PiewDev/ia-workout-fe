@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import './Questionnaire.css'
 // Componente Spinner
 const Spinner = () => (
   <div className="spinner">
@@ -11,7 +11,6 @@ const Spinner = () => (
 // Componentes para cada tipo de pregunta
 const OptionsQuestion = ({ question, options, onSelect, selectedAnswer }) => (
   <div className="question-container">
-    <h3>{question}</h3>
     {Array.isArray(options) && options.length > 0 ? (
       options.map((option, index) => (
         <button 
@@ -30,7 +29,6 @@ const OptionsQuestion = ({ question, options, onSelect, selectedAnswer }) => (
 
 const NumericInputQuestion = ({ question, placeholder, onInput, currentAnswer }) => (
   <div className="question-container">
-    <h3>{question}</h3>
     <input
       type="number"
       placeholder={placeholder}
@@ -43,7 +41,6 @@ const NumericInputQuestion = ({ question, placeholder, onInput, currentAnswer })
 
 const TextInputQuestion = ({ question, limit, onInput, currentAnswer }) => (
   <div className="question-container">
-    <h3>{question}</h3>
     <textarea
       maxLength={limit}
       onChange={(e) => onInput(e.target.value)}
@@ -140,8 +137,7 @@ export default function Questionaire({getRoutine}) {
       case 'options':
         return (
           <OptionsQuestion 
-            key={question.id} 
-            question={question.question}
+            key={question.id}            
             options={question.options} 
             onSelect={handleInput} 
             selectedAnswer={currentAnswer}
@@ -151,7 +147,6 @@ export default function Questionaire({getRoutine}) {
         return (
           <NumericInputQuestion 
             key={question.id} 
-            question={question.question}
             placeholder={question.placeholder}
             onInput={handleInput}
             currentAnswer={currentAnswer}
@@ -161,7 +156,6 @@ export default function Questionaire({getRoutine}) {
         return (
           <TextInputQuestion 
             key={question.id} 
-            question={question.question}
             limit={question.limit}
             onInput={handleInput}
             currentAnswer={currentAnswer}
@@ -189,22 +183,27 @@ export default function Questionaire({getRoutine}) {
   }
 
   return (
-    <div className="stepper-container">
-      <h2>Plan de Entrenamiento de Fuerza</h2>
-      {currentQuestion ? (
-        <>
-          {renderQuestion(currentQuestion)}
-          <button 
-            onClick={handleNext} 
-            disabled={currentAnswer === null}
-            className={`next-button ${currentAnswer === null ? 'disabled' : ''}`}
-          >
-            NEXT
-          </button>
-        </>
-      ) : (
-        <p>El cuestionario ha finalizado. ¡Gracias por tu participación!</p>
-      )}
+    <div className='background-overlay'>
+      <div className="stepper-container">
+        <h2>Plan de Entrenamiento de Fuerza</h2>
+        {currentQuestion ? (
+          <>
+          
+            <h3>{currentQuestion.question}</h3>
+            {renderQuestion(currentQuestion)}
+          
+          </>
+        ) : (
+          <p>El cuestionario ha finalizado. ¡Gracias por tu participación!</p>
+        )}
+        <button 
+              onClick={handleNext} 
+              disabled={currentAnswer === null}
+              className={`option-button ${currentAnswer === null ? 'disabled' : ''}`}
+            >
+              NEXT
+            </button>
+      </div>
     </div>
   );
 }
