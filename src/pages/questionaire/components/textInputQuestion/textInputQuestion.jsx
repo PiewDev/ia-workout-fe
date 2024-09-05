@@ -1,3 +1,4 @@
+//import '../../Questionaire/Questionnaire.css'
 export default function TextInputQuestion ({ question, limit, onInput, currentAnswer }){
   return (
     <div className="question-container">

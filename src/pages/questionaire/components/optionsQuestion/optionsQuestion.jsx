@@ -1,3 +1,4 @@
+//import '../../Questionaire/Questionnaire.css'
 export default function OptionsQuestion({ question, options, onSelect, selectedAnswer }){ 
   return (
     <div className="question-container">

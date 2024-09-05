@@ -12,64 +12,63 @@ height: 100%;
 justify-content: center;
 background-color: rgb(17 22 36 / 56%);;
 }
-.stepper-container {
+.stepper-container {     
+  font-size: 1.2rem;
   max-width: 600px;
   margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 20px;
-  font-family: Arial, sans-serif;
+  border-radius: 10px;
+  border: 2px solid #2ce183;
+  box-shadow: 0 0 10px #2ce183, 0 0 20px #ffee00;
+  transition: all 0.3s ease;
 }
+.stepper-container:hover{
   
+background-color: rgba(0, 0, 0, 0.8);
+box-shadow: 0 0 15px #ffee00, 0 0 30px #2ce183;
+}
+
 .question-container {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
 }
-  
+
 h2 {
-  color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  color: #2ce183;
+  transition: all 0.3s ease;
+  cursor: default;
 }
-  
-h3 {
-  color: #555;
-  margin-bottom: 10px;
+
+h3 {  
+  margin-bottom: 2rem;
+  color: #2ce183;
+  transition: all 0.3s ease;
+  cursor: default;
 }
-  
-.option-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
- 
-.option-button:hover {
-  background-color: #e0e0e0;
-}
-  
+
 .numeric-input,
 .text-input {
-  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
 }
-  
+
 .text-input {
   height: 100px;
   resize: vertical;
 }
-  
+
 .spinner {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100px;
 }
-  
+
 .spinner-inner {
   width: 50px;
   height: 50px;
@@ -78,18 +77,18 @@ h3 {
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-  
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-  
+
 .error-message {
   color: #ff0000;
   font-weight: bold;
   text-align: center;
 }
-  
+
 .next-button {
   display: block;
   width: 100%;
@@ -103,16 +102,16 @@ h3 {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-  
+
 .next-button:hover {
   background-color: #2980b9;
 }
-  
+
 .next-button.disabled {
   background-color: #bdc3c7;
   cursor: not-allowed;
 }
-  
+
 @media (max-width: 600px) {
   .stepper-container {
     padding: 10px;

@@ -5,7 +5,8 @@ import OptionsQuestion from '../components/optionsQuestion/optionsQuestion';
 import NumericInputQuestion from '../components/numericInputQuestion/numericInputQuestion';
 import TextInputQuestion from '../components/textInputQuestion/textInputQuestion';
 import LoadingSpinner from '../../../components/spinner/spinner';
-
+import './Questionnaire.css'
+import Button from '../../../components/button/button';
 // Componente principal Stepper
 export default function Questionaire({getRoutine}) {
   const [questionStack, setQuestionStack] = useState([]);
@@ -139,13 +140,7 @@ export default function Questionaire({getRoutine}) {
         ) : (
           <p>El cuestionario ha finalizado. ¡Gracias por tu participación!</p>
         )}
-        <button 
-              onClick={handleNext} 
-              disabled={currentAnswer === null}
-              className={`option-button ${currentAnswer === null ? 'disabled' : ''}`}
-            >
-              NEXT
-            </button>
+        <Button onClick={handleNext} isDisabled={currentAnswer === null} />
       </div>
     </div>
   );

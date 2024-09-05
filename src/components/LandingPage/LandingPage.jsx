@@ -1,5 +1,6 @@
 import React from 'react';
 import './LandingPage.css';
+import Button from '../button/button';
 
 const LandingPage = () => {
   const handleCreateRoutine = () => {
@@ -20,12 +21,7 @@ const LandingPage = () => {
           distopicWorkout utiliza inteligencia artificial avanzada para generar rutinas de entrenamiento de fuerza personalizadas. 
           Optimiza tu rendimiento y alcanza tus objetivos de fitness con planes de entrenamiento adaptados a tus necesidades en un futuro distópico.
         </p>
-        <button 
-          className="landing-button"
-          onClick={handleCreateRoutine}
-        >
-          Crear Rutina
-        </button>
+        <Button onClick={handleCreateRoutine} isDisabled={false} />
       </div>
     </div>
   );
