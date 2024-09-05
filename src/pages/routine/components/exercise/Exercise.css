@@ -1,0 +1,21 @@
+.exercise {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.exercise-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.exercise-details {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.exercise-notes {
+  font-size: 0.875rem;
+  color: #777;
+  margin-top: 0.25rem;
+}

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getQuestions } from '../../../services/questions/getQuestions';
-import OptionsQuestion from '../components/optionsQuestion/optionsQuestion';
-import NumericInputQuestion from '../components/numericInputQuestion/numericInputQuestion';
-import TextInputQuestion from '../components/textInputQuestion/textInputQuestion';
-import LoadingSpinner from '../../../components/spinner/spinner';
+import { getQuestions } from '../../services/questions/getQuestions.js';
+import OptionsQuestion from './components/options-question/OptionsQuestion.jsx';
+import NumericInputQuestion from './components/numeric-input-question/NumericInputQuestion.jsx';
+import TextInputQuestion from './components/text-input-question/TextInputQuestion.jsx';
+import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
 import './Questionnaire.css'
-import Button from '../../../components/button/button';
+import Button from '../../components/button/Button.jsx';
 // Componente principal Stepper
 export default function Questionaire({getRoutine}) {
   const [questionStack, setQuestionStack] = useState([]);
@@ -129,18 +129,15 @@ export default function Questionaire({getRoutine}) {
   return (
     <div className='background-overlay'>
       <div className="stepper-container">
-        <h2>Plan de Entrenamiento de Fuerza</h2>
+        <h2 className='title'>Plan de Entrenamiento de Fuerza</h2>
         {currentQuestion ? (
           <>
-          
-            <h3>{currentQuestion.question}</h3>
             {renderQuestion(currentQuestion)}
-          
           </>
         ) : (
           <p>El cuestionario ha finalizado. ¡Gracias por tu participación!</p>
         )}
-        <Button onClick={handleNext} isDisabled={currentAnswer === null} />
+        <Button onClick={handleNext} isDisabled={currentAnswer === null}> Next </Button>
       </div>
     </div>
   );

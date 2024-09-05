@@ -1,6 +1,6 @@
 import React from 'react';
 import './LandingPage.css';
-import Button from '../button/button';
+import Button from '../button/Button';
 
 const LandingPage = () => {
   const handleCreateRoutine = () => {
