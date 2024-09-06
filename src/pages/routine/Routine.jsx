@@ -1,12 +1,21 @@
 import { useState, useEffect} from 'react'
 import './Routine.css';
 import Week from './components/week/Week.jsx';
-import Button from '../../../components/button/Button.jsx';
-import { DAYS_PER_WEEK, PLAN_TYPE,} from '../../../utils/textConstant.js';
+import Button from '../../components/button/Button.jsx';
+import { DAYS_PER_WEEK, PLAN_TYPE,} from '../../utils/textConstant.js';
+import { useAppProvider } from '../context-provider/AppProvider.jsx';
+import { useNavigate } from 'react-router-dom';
 
-export default function Routine(routine) {
+export default function Routine() {
+
+  const {routine} = useAppProvider();
+  const navigate = useNavigate()
+  if (!routine){
+    navigate('/')
+    return
+  }
   const [showAbout, setShowAbout] = useState(false)
-  const {plan} = routine.routine;
+  const {plan} = routine;
   useEffect(() => {
     console.log(routine, 'plan');
   }, []);

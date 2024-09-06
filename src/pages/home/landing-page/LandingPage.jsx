@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
-import Button from '../button/Button.jsx';
-import { APP_DESCRIPTION, APP_NAME, CREATE_ROUTINE, SUBTITLE_LANDING_PAGE } from '../../utils/textConstant.js';
+import Button from '../../../components/button/Button.jsx';
+import { APP_DESCRIPTION, APP_NAME, CREATE_ROUTINE, SUBTITLE_LANDING_PAGE } from '../../../utils/textConstant.js';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   const handleCreateRoutine = () => {
-    navigate('/routine');
+    navigate('/questionnaire');
   };
 
   return (

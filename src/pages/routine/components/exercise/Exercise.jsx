@@ -1,4 +1,4 @@
-import { SYMBOLS } from '../../../../../utils/textConstant'
+import { SYMBOLS } from '../../../../utils/textConstant'
 import './Exercise.css'
 export default function Exercise({ exercise }) {
   return (

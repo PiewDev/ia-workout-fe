@@ -1,12 +1,15 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
+import { AppProvider } from './pages/context-provider/AppProvider';
 
 function App() { 
 
   return (
     <> 
      <div className="container">
-      <Outlet />
+      <AppProvider>
+        <Outlet />
+      </AppProvider>
      </div>
     </>
   );

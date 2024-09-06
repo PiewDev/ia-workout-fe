@@ -3,8 +3,9 @@ import * as ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
-import LandingPage from './components/landing-page/LandingPage.jsx';
-import CreateRoutine from './pages/routines/CreateRoutine.jsx';
+import LandingPage from './pages/home/landing-page/LandingPage.jsx';
+import Routine from './pages/routine/Routine.jsx';
+import Questionaire from './pages/questionaire/Questionnaire.jsx';
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <LandingPage /> },
-      { path: 'routine', element: <CreateRoutine /> }
+      { path: 'routine', element: <Routine /> },
+      { path: 'questionnaire', element: <Questionaire />}
     ]
   }
 ]);
