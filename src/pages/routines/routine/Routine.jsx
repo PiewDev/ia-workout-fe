@@ -1,8 +1,8 @@
 import { useState, useEffect} from 'react'
 import './Routine.css';
 import Week from './components/week/Week.jsx';
-import Button from '../../components/button/Button.jsx';
-import { DAYS_PER_WEEK, PLAN_TYPE,} from '../../utils/textConstant.js';
+import Button from '../../../components/button/Button.jsx';
+import { DAYS_PER_WEEK, PLAN_TYPE,} from '../../../utils/textConstant.js';
 
 export default function Routine(routine) {
   const [showAbout, setShowAbout] = useState(false)

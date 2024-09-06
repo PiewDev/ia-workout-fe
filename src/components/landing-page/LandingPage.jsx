@@ -1,11 +1,12 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import Button from '../button/Button.jsx';
 import { APP_DESCRIPTION, APP_NAME, CREATE_ROUTINE, SUBTITLE_LANDING_PAGE } from '../../utils/textConstant.js';
 
 const LandingPage = () => {
+  const navigate = useNavigate();
   const handleCreateRoutine = () => {
-    alert('¡Función de crear rutina en desarrollo!');
+    navigate('/routine');
   };
 
   return (

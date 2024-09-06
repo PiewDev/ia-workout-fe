@@ -1,4 +1,4 @@
-import { CARACTERS, MAXIMUM } from "../../../../utils/textConstant";
+import { CARACTERS, MAXIMUM } from "../../../../../utils/textConstant";
 
 //import '../../Questionaire/Questionnaire.css'
 export default function TextInputQuestion ({ question, limit, onInput, currentAnswer }){

@@ -1,5 +1,5 @@
-import Button from "../../../../components/button/Button";
-import { NO_OPTIONS_AVAILABLE } from "../../../../utils/textConstant";
+import Button from "../../../../../components/button/Button";
+import { NO_OPTIONS_AVAILABLE } from "../../../../../utils/textConstant";
 
 //import '../../Questionaire/Questionnaire.css'
 export default function OptionsQuestion({ question, options, onSelect, selectedAnswer }){ 

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getQuestions } from '../../services/questions/getQuestions.js';
+import { getQuestions } from '../../../services/questions/getQuestions.js';
 import OptionsQuestion from './components/options-question/OptionsQuestion.jsx';
 import NumericInputQuestion from './components/numeric-input-question/NumericInputQuestion.jsx';
 import TextInputQuestion from './components/text-input-question/TextInputQuestion.jsx';
-import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
+import LoadingSpinner from '../../../components/loading-spinner/LoadingSpinner.jsx';
 import './Questionnaire.css'
-import Button from '../../components/button/Button.jsx';
-import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT, QUESTION_TYPES } from '../../utils/textConstant.js';
+import Button from '../../../components/button/Button.jsx';
+import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT, QUESTION_TYPES } from '../../../utils/textConstant.js';
 // Componente principal Stepper
 export default function Questionaire({getRoutine}) {
   const [questionStack, setQuestionStack] = useState([]);

@@ -1,6 +1,6 @@
 import Day from "../days/Day.jsx";
 import './Week.css'
-import { WEEK } from "../../../../utils/textConstant.js";
+import { WEEK } from "../../../../../utils/textConstant.js";
 export default function Week ({ week }){ 
   return (
   <div className="week">
