@@ -1,9 +1,10 @@
-import Day from "../days/Day.jsx";
+import Day from "../days/Day-tmp.jsx";
 import './Week.css'
+import { SEMANA } from "../../../../utils/textConstant.js";
 export default function Week ({ week }){ 
   return (
   <div className="week">
-    <h2 className='title'>Semana {week.weekNumber}</h2>
+    <h2 className='title'>{SEMANA} {week.weekNumber}</h2>
     <p className="week-purpose">{week.weekPurpose}</p>
     {week.days.map((day, index) => (
       <Day key={index} day={day} />

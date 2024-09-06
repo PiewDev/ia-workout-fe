@@ -1,7 +1,8 @@
 import { useState, useEffect} from 'react'
 import './Routine.css';
-import Week from './components/week/Week.jsx';
-import Button from '../../components/button/Button.jsx';
+import Week from './components/week/Week-tmp.jsx';
+import Button from '../../components/button/Button-tmp.jsx';
+import { DIAS_POR_SEMANA, TIPO_DE_PLAN } from '../../utils/textConstant.js';
 
 export default function Routine(routine) {
   const [showAbout, setShowAbout] = useState(false)
@@ -13,8 +14,8 @@ export default function Routine(routine) {
   return (
     <div className="training-plan">
       <h1 className='routine-title'>{plan.name}</h1>
-      <p>Tipo de plan: {plan.planType}</p>
-      <p>Días por semana: {plan.daysPeerWeek}</p>
+      <p>{TIPO_DE_PLAN} {plan.planType}</p>
+      <p>{DIAS_POR_SEMANA} {plan.daysPeerWeek}</p>
       
       <Button onClick={() => setShowAbout(!showAbout)}>
         {showAbout ? 'Ocultar detalles' : 'Mostrar detalles'}

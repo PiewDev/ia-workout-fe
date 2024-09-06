@@ -1,3 +1,5 @@
+import { CARACTERES, MAXIMO } from "../../../../utils/textConstant";
+
 //import '../../Questionaire/Questionnaire.css'
 export default function TextInputQuestion ({ question, limit, onInput, currentAnswer }){
   return (
@@ -8,7 +10,7 @@ export default function TextInputQuestion ({ question, limit, onInput, currentAn
         onChange={(e) => onInput(e.target.value)}
         value={currentAnswer || ''}
         className="text-input"
-        placeholder={`Máximo ${limit} caracteres`}
+        placeholder={`${MAXIMO} ${limit} ${CARACTERES}`}
       />
     </div>
   );
