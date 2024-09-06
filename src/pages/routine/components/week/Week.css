@@ -1,6 +1,6 @@
 .week {
   margin-bottom: 2rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--eva);
   border-radius: 4px;
   padding: 1rem;
 }

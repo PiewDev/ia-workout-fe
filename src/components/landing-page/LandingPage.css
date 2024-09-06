@@ -26,7 +26,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgb(17 22 36 / 56%);
+  background-color: var(--nebula);
   z-index: 1;
 }
 
@@ -41,14 +41,14 @@
   font-size: 4rem;
   margin-bottom: 1rem;
   color: #000000;
-  text-shadow: 2px 2px 4px #2ce183, -2px -2px 4px #ffee00;
+  text-shadow: 2px 2px 4px var(--space-green), -2px -2px 4px var(--space-yellow);
 }
 
 .landing-subtitle {
   font-size: 1.8rem;
   margin-bottom: 2rem;
-  color: #2ce183;
-  text-shadow: 1px 1px 2px #2ce183;
+  color: var(--space-green);
+  text-shadow: 1px 1px 2px var(--space-green);
   transition: all 0.3s ease;
   cursor: default;
 }
@@ -58,23 +58,23 @@
   font-size: 1.2rem;
   max-width: 600px;
   margin-bottom: 2rem;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--space);
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid #2ce183;
-  box-shadow: 0 0 10px #2ce183, 0 0 20px #ffee00;
+  border: 2px solid var(--space-green);
+  box-shadow: 0 0 10px var(--space-green), 0 0 20px var(--space-yellow);
   transition: all 0.3s ease;
 }
 
 .landing-about:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 15px #ffee00, 0 0 30px #2ce183;
+  background-color: var(--deep-space);
+  box-shadow: 0 0 15px var(--space-yellow), 0 0 30px var(--space-green);
 }
 
 .landing-button {
   padding: 12px 24px;
   font-size: 1.2rem;
-  background-color: #2ce183;
+  background-color: var(--space-green);
   color: #000000;
   border: none;
   border-radius: 5px;
@@ -83,13 +83,13 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
-  box-shadow: 0 0 10px #ffee00;
+  box-shadow: 0 0 10px var(--space-yellow);
 }
 
 .landing-button:hover {
-  background-color: #2ce183;
-  color: #ffee00;
-  box-shadow: 0 0 20px #ffee00;
+  background-color: var(--space-green);
+  color: var(--space-yellow);
+  box-shadow: 0 0 20px var(--space-yellow);
   transform: scale(1.05);
 }
 

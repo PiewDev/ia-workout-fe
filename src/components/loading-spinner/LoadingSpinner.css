@@ -1,6 +1,6 @@
 .spinner {
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #4f46e5; /* Color principal del spinner */
+  border: 4px solid var(--space-green);
+  border-left-color: var(--space-yellow);
   border-radius: 50%;
   width: 40px;
   height: 40px;
