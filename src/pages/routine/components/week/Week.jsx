@@ -1,4 +1,4 @@
-import Day from "../days/Day-tmp.jsx";
+import Day from "../days/Day.jsx";
 import './Week.css'
 import { SEMANA } from "../../../../utils/textConstant.js";
 export default function Week ({ week }){ 

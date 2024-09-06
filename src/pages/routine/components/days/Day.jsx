@@ -1,6 +1,6 @@
 import { useState } from "react"
 import './Day.css'
-import Exercise from "../exercise/Exercise-tmp.jsx"
+import Exercise from "../exercise/Exercise.jsx"
 
 export default function Day ({ day }) {
   const [isOpen, setIsOpen] = useState(false)
