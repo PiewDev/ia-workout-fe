@@ -1,0 +1,23 @@
+.day {
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.day-header {
+  padding: 1rem;
+  background-color: #000000;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-title {
+  margin: 0; 
+}
+
+.day-content {
+  padding: 1rem;
+}

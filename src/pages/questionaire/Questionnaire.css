@@ -1,0 +1,74 @@
+body{
+  background-image: url('/fondoQuestionarie.png');
+}
+.background-overlay{
+  position: absolute;
+top: 0;
+left: 0;
+display: flex;
+flex-direction: column;
+width: 100%;
+height: 100%;
+justify-content: center;
+background-color: rgb(17 22 36 / 56%);;
+}
+.stepper-container {     
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #2ce183;
+  box-shadow: 0 0 10px #2ce183, 0 0 20px #ffee00;
+  transition: all 0.3s ease;
+}
+.stepper-container:hover{
+background-color: rgba(0, 0, 0, 0.8);
+box-shadow: 0 0 15px #ffee00, 0 0 30px #2ce183;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin-bottom: 2rem;
+  color: #2ce183;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.sub-title {  
+  margin-bottom: 2rem;
+  color: #2ce183;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.numeric-input,
+.text-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.text-input {
+  height: 100px;
+  resize: vertical;
+}
+
+.error-message {
+  color: #ff0000;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .stepper-container {
+    padding: 10px;
+  }
+}

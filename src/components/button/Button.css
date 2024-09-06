@@ -1,0 +1,44 @@
+.option-button:hover{
+  
+  background-color: #2ce183;
+  color: #ffee00;
+  box-shadow: 0 0 20px #ffee00;
+  transform: scale(1.05);
+  }
+  .option-button {
+    
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    background-color: #2ce183;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ffee00;
+  }
+  .option-button:disabled:hover {
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    background-color: #bdc3c7;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    
+    cursor: not-allowed;
+  }
+  .option-button.disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;      
+    box-shadow: 0 0 10px #000000;
+  }

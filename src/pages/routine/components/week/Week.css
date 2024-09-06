@@ -1,0 +1,12 @@
+.week {
+  margin-bottom: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.week-purpose {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 1rem;
+}

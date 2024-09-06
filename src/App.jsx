@@ -1,42 +1,40 @@
-
-import Questionnaire from './components/Questionaire/Questionnaire.jsx';
-import Routine from './components/Routine/Routine.jsx';
-import './App.css'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './App.css';
+import getRoutine from './services/questions/getRoutine.js';
+import Routine from './pages/routine/Routine.jsx';
+import Questionnaire from './pages/questionaire/Questionnaire.jsx';
+import LoadingSpinner from './components/loading-spinner/LoadingSpinner.jsx';
 
 function App() { 
-  const [routine, setRoutine] = useState(null)
-  
-  function getRoutine(answers) {
-    var answersBody = JSON.stringify(answers) 
-    fetch('http://localhost:3000/routine', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: answersBody,
-    }) 
-    .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json(); // Lee el cuerpo de la respuesta como JSON
-      })
-      .then((data) => {
-        console.log(data, 'datar');
-        setRoutine(data);
+  const [routine, setRoutine] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
+  function handleGetRoutine(answers) {
+    setIsLoading(true); // Mostrar el spinner de carga
+    getRoutine(answers)
+      .then((data) => {
+        setRoutine(data);
+        setIsLoading(false); // Ocultar el spinner cuando la carga haya terminado
       })
       .catch((err) => {
-      console.log(err)
-      })
+        console.log(err);
+        setIsLoading(false); // Ocultar el spinner en caso de error
+      });
   };
 
   return (
-    <>
-    {!routine ? <Questionnaire getRoutine={getRoutine} /> : <Routine routine={routine} />}
+    <> 
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        !routine ? (
+          <Questionnaire getRoutine={handleGetRoutine} />
+        ) : (
+          <Routine routine={routine} />
+        )
+      )}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
