@@ -7,6 +7,7 @@ import TextInputQuestion from './components/text-input-question/TextInputQuestio
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
 import './Questionnaire.css'
 import Button from '../../components/button/Button.jsx';
+import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT, QUESTION_TYPES } from '../../utils/textConstant.js';
 // Componente principal Stepper
 export default function Questionaire({getRoutine}) {
   const [questionStack, setQuestionStack] = useState([]);
@@ -77,7 +78,7 @@ export default function Questionaire({getRoutine}) {
 
   const renderQuestion = (question) => {
     switch (question.type) {
-      case 'options':
+      case QUESTION_TYPES.OPTIONS:
         return (
           <OptionsQuestion 
           key={question.id} 
@@ -87,7 +88,7 @@ export default function Questionaire({getRoutine}) {
           selectedAnswer={currentAnswer}
         />
         );
-      case 'numeric-input':
+      case QUESTION_TYPES.NUMERIC_INPUT:
         return (
           <NumericInputQuestion 
             key={question.id} 
@@ -96,7 +97,7 @@ export default function Questionaire({getRoutine}) {
             currentAnswer={currentAnswer}
           />
         );
-      case 'text-input':
+      case QUESTION_TYPES.TEXT_INPUT:
         return (
           <TextInputQuestion 
             key={question.id} 
@@ -129,15 +130,15 @@ export default function Questionaire({getRoutine}) {
   return (
     <div className='background-overlay'>
       <div className="stepper-container">
-        <h2 className='title'>Plan de Entrenamiento de Fuerza</h2>
+        <h2 className='title'>{FORCE_PLAN}</h2>
         {currentQuestion ? (
           <>
             {renderQuestion(currentQuestion)}
           </>
         ) : (
-          <p>El cuestionario ha finalizado. ¡Gracias por tu participación!</p>
+          <p>{COMPLETED_CUESTIONNAIRE}</p>
         )}
-        <Button onClick={handleNext} isDisabled={currentAnswer === null}> Next </Button>
+        <Button onClick={handleNext} isDisabled={currentAnswer === null}>{NEXT}</Button>
       </div>
     </div>
   );

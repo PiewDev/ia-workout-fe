@@ -1,6 +1,7 @@
 import React from 'react';
 import './LandingPage.css';
 import Button from '../button/Button.jsx';
+import { APP_DESCRIPTION, APP_NAME, CREATE_ROUTINE, SUBTITLE_LANDING_PAGE } from '../../utils/textConstant.js';
 
 const LandingPage = () => {
   const handleCreateRoutine = () => {
@@ -12,16 +13,15 @@ const LandingPage = () => {
       <div className="landing-overlay"></div>
       <div className="landing-content">
         <h1 className="landing-title">
-          distopicWorkout
+          {APP_NAME}
         </h1>
         <p className="landing-subtitle">
-          Entrenamiento de fuerza con IA
+          {SUBTITLE_LANDING_PAGE}
         </p>
         <p className="landing-about">
-          distopicWorkout utiliza inteligencia artificial avanzada para generar rutinas de entrenamiento de fuerza personalizadas. 
-          Optimiza tu rendimiento y alcanza tus objetivos de fitness con planes de entrenamiento adaptados a tus necesidades en un futuro distópico.
+          {APP_NAME} {APP_DESCRIPTION}
         </p>
-        <Button onClick={handleCreateRoutine} isDisabled={false}>Crear Rutina</Button>
+        <Button onClick={handleCreateRoutine} isDisabled={false}>{CREATE_ROUTINE}</Button>
       </div>
     </div>
   );
