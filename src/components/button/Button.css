@@ -1,8 +1,8 @@
 .option-button:hover{
   
-  background-color: var(--space-green);
-  color: var(--space-yellow);
-  box-shadow: 0 0 20px var(--space-yellow);
+  background-color: rgb(var(--space-green));
+  color: rgb(var(--space-yellow));
+  box-shadow: 0 0 20px rgb(var(--space-yellow));
   transform: scale(1.05);
   }
   .option-button {
@@ -10,7 +10,7 @@
     margin: 10px;
     padding: 12px 24px;
     font-size: 1.2rem;
-    background-color: var(--space-green);
+    background-color: rgb(var(--space-green));
     color: #000000;
     border: none;
     border-radius: 5px;
@@ -19,7 +19,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: bold;
-    box-shadow: 0 0 10px var(--space-yellow);
+    box-shadow: 0 0 10px rgb(var(--space-yellow));
   }
   .option-button:disabled:hover {
     margin: 10px;
