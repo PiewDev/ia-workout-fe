@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getQuestions } from '../../services/questions/getQuestions.js';
+import  getRoutine from '../../services/routine/getRoutine.js'
 import OptionsQuestion from './components/options-question/OptionsQuestion.jsx';
 import NumericInputQuestion from './components/numeric-input-question/NumericInputQuestion.jsx';
 import TextInputQuestion from './components/text-input-question/TextInputQuestion.jsx';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
-import './Questionnaire.css'
+import './Stepper.css'
 import Button from '../../components/button/Button.jsx';
 import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT, QUESTION_TYPES } from '../../utils/textConstant.js';
+import { useAppProvider } from '../context-provider/AppProvider.jsx';
+import { useNavigate } from 'react-router-dom';
+
 // Componente principal Stepper
-export default function Questionaire({getRoutine}) {
+
+const Stepper = () => {
   const [questionStack, setQuestionStack] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentAnswer, setCurrentAnswer] = useState(null);
@@ -17,9 +22,13 @@ export default function Questionaire({getRoutine}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  
+  const { updateRoutine } = useAppProvider();
+
+  const navigate = useNavigate();
+
   const fetchInitialData = async () => {    
     setLoading(true);
+    setError(null);
     try {
       const data = await getQuestions();
       setCurrentQuestion(data);
@@ -61,19 +70,24 @@ export default function Questionaire({getRoutine}) {
       setCurrentQuestion(nextQuestion);
       setCurrentAnswer(null);
     } else {
-      finishQuestionnaire(newAnswers);
+     finishQuestionnaire(newAnswers);
     }
   };
 
 
-  const finishQuestionnaire = (finalAnswers) => {
+  const finishQuestionnaire = async (finalAnswers) => {
     setLoading(true);
     // Simulación de envío de datos al backend
     const formattedAnswers = finalAnswers.map(({ questionId, answer }) => ({
         questionId,
         answer: answer.toString(  )
       }));    
-    getRoutine(formattedAnswers);
+    const newRoutine = await getRoutine(formattedAnswers);
+    console.log(newRoutine)
+    updateRoutine(newRoutine);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    navigate('/routine');
+    setLoading(false);
   };
 
   const renderQuestion = (question) => {
@@ -92,6 +106,7 @@ export default function Questionaire({getRoutine}) {
         return (
           <NumericInputQuestion 
             key={question.id} 
+            question={question.question}
             placeholder={question.placeholder}
             onInput={handleInput}
             currentAnswer={currentAnswer}
@@ -101,6 +116,7 @@ export default function Questionaire({getRoutine}) {
         return (
           <TextInputQuestion 
             key={question.id} 
+            question={question.question}
             limit={question.limit}
             onInput={handleInput}
             currentAnswer={currentAnswer}
@@ -168,3 +184,5 @@ TextInputQuestion.propTypes = {
   onInput: PropTypes.func.isRequired,
   currentAnswer: PropTypes.string,
 };
+
+export default Stepper;
