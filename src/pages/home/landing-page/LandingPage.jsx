@@ -6,7 +6,7 @@ import { APP_DESCRIPTION, APP_NAME, CREATE_ROUTINE, SUBTITLE_LANDING_PAGE } from
 const LandingPage = () => {
   const navigate = useNavigate();
   const handleCreateRoutine = () => {
-    navigate('/questionnaire');
+    navigate('/Questions');
   };
 
   return (

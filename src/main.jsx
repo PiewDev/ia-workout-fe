@@ -5,7 +5,7 @@ import App from './App.jsx';
 import './index.css';
 import LandingPage from './pages/home/landing-page/LandingPage.jsx';
 import Routine from './pages/routine/Routine.jsx';
-import Questionaire from './pages/questionaire/Stepper.jsx';
+import Stepper from './pages/stepper/Stepper.jsx';
 
 const router = createBrowserRouter([
   {
