@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import './TimePicker.css';
-import Button from './components/Button.jsx';
+import PositionButton from './components/PositionButton.jsx';
 import ValueDisplay from './components/ValueDisplay.jsx';
 
 const TimePicker = ({ onChange }) => {
@@ -56,18 +56,18 @@ const TimePicker = ({ onChange }) => {
     <div className="outer-container" tabIndex={0}>
       <div className="container">
         <div className="column">
-          <Button onClick={incrementYears} position="top">
-          </Button>
+          <PositionButton onClick={incrementYears} position="top">
+          </PositionButton>
           <ValueDisplay value={years} onChange={handleYearChange} label="años" />
-          <Button onClick={decrementYears} position="bottom">
-          </Button>
+          <PositionButton onClick={decrementYears} position="bottom">
+          </PositionButton>
         </div>
         <div className="column">
-          <Button onClick={incrementMonths} position="top">
-          </Button>
+          <PositionButton onClick={incrementMonths} position="top">
+          </PositionButton>
           <ValueDisplay value={months} onChange={handleMonthChange} label="meses" />
-          <Button onClick={decrementMonths} position="bottom">
-          </Button>
+          <PositionButton onClick={decrementMonths} position="bottom">
+          </PositionButton>
         </div>
       </div>
     </div>
