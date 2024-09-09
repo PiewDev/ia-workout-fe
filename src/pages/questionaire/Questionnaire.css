@@ -10,22 +10,22 @@ flex-direction: column;
 width: 100%;
 height: 100%;
 justify-content: center;
-background-color: var(--nebula);;
+background-color: rgba(var(--nebula));;
 }
 .stepper-container {     
   font-size: 1.2rem;
   max-width: 600px;
   margin: 0 auto;
-  background-color: var(--space);
+  background-color: rgba(var(--space));
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid var(--space-green);
-  box-shadow: 0 0 10px var(--space-green), 0 0 20px var(--space-yellow);
+  border: 2px solid rgb(var(--space-green));
+  box-shadow: 0 0 10px rgb(var(--space-green)), 0 0 20px rgb(var(--space-yellow));
   transition: all 0.3s ease;
 }
 .stepper-container:hover{
-background-color: var(--deep-space);
-box-shadow: 0 0 15px var(--space-yellow), 0 0 30px var(--space-green);
+background-color: rgba(var(--deep-space));
+box-shadow: 0 0 15px rgb(var(--space-yellow)), 0 0 30px rgb(var(--space-green));
 }
 
 .question-container {
@@ -36,14 +36,14 @@ box-shadow: 0 0 15px var(--space-yellow), 0 0 30px var(--space-green);
 
 .title {
   margin-bottom: 2rem;
-  color: var(--space-green);
+  color: rgb(var(--space-green));
   transition: all 0.3s ease;
   cursor: default;
 }
 
 .sub-title {  
   margin-bottom: 2rem;
-  color: var(--space-green);
+  color: rgb(var(--space-green));
   transition: all 0.3s ease;
   cursor: default;
 }
@@ -51,7 +51,7 @@ box-shadow: 0 0 15px var(--space-yellow), 0 0 30px var(--space-green);
 .numeric-input,
 .text-input {
   padding: 10px;
-  border: 1px solid var(--eva);
+  border: 1px solid rgb(var(--eva));
   border-radius: 5px;
   font-size: 16px;
 }
@@ -62,7 +62,7 @@ box-shadow: 0 0 15px var(--space-yellow), 0 0 30px var(--space-green);
 }
 
 .error-message {
-  color: var(--space-red);
+  color: rgb(var(--space-red));
   font-weight: bold;
   text-align: center;
 }

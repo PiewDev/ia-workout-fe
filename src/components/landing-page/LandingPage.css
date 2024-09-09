@@ -26,7 +26,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--nebula);
+  background-color: rgba(var(--nebula));
   z-index: 1;
 }
 
@@ -41,14 +41,14 @@
   font-size: 4rem;
   margin-bottom: 1rem;
   color: #000000;
-  text-shadow: 2px 2px 4px var(--space-green), -2px -2px 4px var(--space-yellow);
+  text-shadow: 2px 2px 4px rgb(var(--space-green)), -2px -2px 4px rgb(var(--space-yellow));
 }
 
 .landing-subtitle {
   font-size: 1.8rem;
   margin-bottom: 2rem;
-  color: var(--space-green);
-  text-shadow: 1px 1px 2px var(--space-green);
+  color: rgb(var(--space-green));
+  text-shadow: 1px 1px 2px rgb(var(--space-green));
   transition: all 0.3s ease;
   cursor: default;
 }
@@ -58,23 +58,23 @@
   font-size: 1.2rem;
   max-width: 600px;
   margin-bottom: 2rem;
-  background-color: var(--space);
+  background-color: rgba(var(--space));
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid var(--space-green);
-  box-shadow: 0 0 10px var(--space-green), 0 0 20px var(--space-yellow);
+  border: 2px solid rgb(var(--space-green));
+  box-shadow: 0 0 10px rgb(var(--space-green)), 0 0 20px rgb(var(--space-yellow));
   transition: all 0.3s ease;
 }
 
 .landing-about:hover {
-  background-color: var(--deep-space);
-  box-shadow: 0 0 15px var(--space-yellow), 0 0 30px var(--space-green);
+  background-color: rgba(var(--deep-space));
+  box-shadow: 0 0 15px rgb(var(--space-yellow)), 0 0 30px rgb(var(--space-green));
 }
 
 .landing-button {
   padding: 12px 24px;
   font-size: 1.2rem;
-  background-color: var(--space-green);
+  background-color: rgb(var(--space-green));
   color: #000000;
   border: none;
   border-radius: 5px;
@@ -83,13 +83,13 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
-  box-shadow: 0 0 10px var(--space-yellow);
+  box-shadow: 0 0 10px rgb(var(--space-yellow));
 }
 
 .landing-button:hover {
-  background-color: var(--space-green);
-  color: var(--space-yellow);
-  box-shadow: 0 0 20px var(--space-yellow);
+  background-color: rgb(var(--space-green));
+  color: rgb(var(--space-yellow));
+  box-shadow: 0 0 20px rgb(var(--space-yellow));
   transform: scale(1.05);
 }
 
