@@ -6,7 +6,7 @@ import OptionsQuestion from './components/options-question/OptionsQuestion.jsx';
 import NumericInputQuestion from './components/numeric-input-question/NumericInputQuestion.jsx';
 import TextInputQuestion from './components/text-input-question/TextInputQuestion.jsx';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
-import './Questionnaire.css'
+import './Stepper.css'
 import Button from '../../components/button/Button.jsx';
 import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT, QUESTION_TYPES } from '../../utils/textConstant.js';
 import { useAppProvider } from '../context-provider/AppProvider.jsx';
@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Componente principal Stepper
 
-export default function Questionaire() {
+const Stepper = () => {
   const [questionStack, setQuestionStack] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [currentAnswer, setCurrentAnswer] = useState(null);
@@ -184,3 +184,5 @@ TextInputQuestion.propTypes = {
   onInput: PropTypes.func.isRequired,
   currentAnswer: PropTypes.string,
 };
+
+export default Stepper;

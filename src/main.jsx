@@ -5,7 +5,7 @@ import App from './App.jsx';
 import './index.css';
 import LandingPage from './pages/home/landing-page/LandingPage.jsx';
 import Routine from './pages/routine/Routine.jsx';
-import Questionaire from './pages/questionaire/Questionnaire.jsx';
+import Questionaire from './pages/questionaire/Stepper.jsx';
 
 const router = createBrowserRouter([
   {
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <LandingPage /> },
-      { path: 'routine', element: <Routine /> },
-      { path: 'questionnaire', element: <Questionaire />}
+      { path: 'Routine', element: <Routine /> },
+      { path: 'Questions', element: <Stepper />}
     ]
   }
 ]);
