@@ -1,8 +1,7 @@
 .option-button:hover{
   
   background-color: rgb(var(--space-green));
-  color: rgb(var(--space-yellow));
-  box-shadow: 0 0 20px rgb(var(--space-yellow));
+  box-shadow: 0 0 10px rgb(var(--space-yellow));
   transform: scale(1.05);
   }
   .option-button {
@@ -19,13 +18,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: bold;
-    box-shadow: 0 0 10px rgb(var(--space-yellow));
   }
   .option-button:disabled:hover {
     margin: 10px;
     padding: 12px 24px;
     font-size: 1.2rem;
-    background-color: #bdc3c7;
+    background-color: rgb(var(--space-yellow),0.6);
     color: #000000;
     border: none;
     border-radius: 5px;
@@ -38,7 +36,17 @@
     cursor: not-allowed;
   }
   .option-button.disabled {
-    background-color: #bdc3c7;
+    background-color: rgb(var(--space-yellow),0.6);
     cursor: not-allowed;      
     box-shadow: 0 0 10px #000000;
   }
+  
+.option-button.selected{
+    
+  background-color: rgb(var(--space-yellow));
+}
+.option-button.selected:hover {
+  background-color: rgb(var(--space-yellow)); /* Mantiene el color amarillo */
+  transform: none; /* Evita la transformación */
+  box-shadow: none;
+}

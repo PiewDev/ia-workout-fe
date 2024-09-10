@@ -11,7 +11,7 @@ export default function OptionsQuestion ({ question, options, onSelect, selected
           <Button 
             key={index} 
             onClick={() => onSelect(option.text)} 
-            className={`option-button ${selectedAnswer === option.text ? 'selected' : ''}`}
+            isSelected={selectedAnswer === option.text}
           >
             {option.text}
           </Button>
