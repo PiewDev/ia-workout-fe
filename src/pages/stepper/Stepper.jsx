@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getQuestions } from '../../services/questions/getQuestions.js';
 import  getRoutine from '../../services/routine/getRoutine.js';
 import OptionsQuestion from './components/options-question/OptionsQuestion.jsx';
-import NumericInputQuestion from './components/numeric-input-question/NumericInputQuestion.jsx';
+import MonthSelector from '../../components/month-selector/MonthSelector.jsx';
 import TextInputQuestion from './components/text-input-question/TextInputQuestion.jsx';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
 import './Stepper.css';
@@ -104,14 +104,12 @@ const Stepper = () => {
             selectedAnswer={currentAnswer}
           />
         );
-      case QUESTION_TYPES.NUMERIC_INPUT:
+      case QUESTION_TYPES.MONTH_SELECTOR:
         return (
-          <NumericInputQuestion 
+          <MonthSelector
             key={question.id} 
             question={question.question}
-            placeholder={question.placeholder}
             onInput={handleInput}
-            currentAnswer={currentAnswer}
           />
         );
       case QUESTION_TYPES.TEXT_INPUT:
@@ -156,7 +154,7 @@ const Stepper = () => {
         ) : (
           <p>{COMPLETED_CUESTIONNAIRE}</p>
         )}
-        <Button onClick={handleNext} isDisabled={currentAnswer === null}>{NEXT}</Button>
+        <Button onClick={handleNext} isDisabled={!currentAnswer}>{NEXT}</Button>
       </div>
     </div>
   );
@@ -173,11 +171,9 @@ OptionsQuestion.propTypes = {
   selectedAnswer: PropTypes.string,
 };
 
-NumericInputQuestion.propTypes = {
+MonthSelector.propTypes = {
   question: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
   onInput: PropTypes.func.isRequired,
-  currentAnswer: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 TextInputQuestion.propTypes = {

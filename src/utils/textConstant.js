@@ -11,7 +11,7 @@ export const CREATE_ROUTINE = 'Crear Rutina';
 export const NO_OPTIONS_AVAILABLE = 'No hay opciones disponibles.';
 export const QUESTION_TYPES = {
   OPTIONS : 'options',
-  NUMERIC_INPUT: 'numeric-input',
+  MONTH_SELECTOR: 'month-selector',
   TEXT_INPUT: 'text-input'
 
 };
