@@ -1,14 +1,14 @@
-import { useState } from "react"
-import './Day.css'
-import Exercise from "../exercise/Exercise.jsx"
+import { useState } from 'react';
+import './Day.css';
+import Exercise from '../exercise/Exercise.jsx';
 
 export default function Day ({ day }) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="day">
       <div className="day-header" onClick={() => setIsOpen(!isOpen)}>
-         <h3 className="sub-title">{day.day}</h3>
+        <h3 className="sub-title">{day.day}</h3>
         <span>{isOpen ? '▲' : '▼'}</span>
       </div>
       {isOpen && (
@@ -19,5 +19,5 @@ export default function Day ({ day }) {
         </div>
       )}
     </div>
-  )
+  );
 }

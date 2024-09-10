@@ -1,24 +1,21 @@
-import { useState, useEffect} from 'react'
+import { useState } from 'react';
 import './Routine.css';
 import Week from './components/week/Week.jsx';
 import Button from '../../components/button/Button.jsx';
-import { DAYS_PER_WEEK, PLAN_TYPE,} from '../../utils/textConstant.js';
+import { DAYS_PER_WEEK, PLAN_TYPE, } from '../../utils/textConstant.js';
 import { useAppProvider } from '../context-provider/AppProvider.jsx';
 import { useNavigate } from 'react-router-dom';
 
-export default function Routine() {
+export default function Routine () {
+  const [showAbout, setShowAbout] = useState(false);
 
-  const {routine} = useAppProvider();
-  const navigate = useNavigate()
-  if (!routine){
-    navigate('/')
-    return
+  const { routine } = useAppProvider();
+  const navigate = useNavigate();
+  if (!routine) {
+    navigate('/');
+    return;
   }
-  const [showAbout, setShowAbout] = useState(false)
-  const {plan} = routine;
-  useEffect(() => {
-    console.log(routine, 'plan');
-  }, []);
+  const { plan } = routine;
   
   return (
     <div className="training-plan">
@@ -40,5 +37,5 @@ export default function Routine() {
         <Week key={index} week={week} />
       ))}
     </div>
-  )
+  );
 }
