@@ -97,8 +97,7 @@ const Stepper = () => {
       case QUESTION_TYPES.OPTIONS:
         return (
           <OptionsQuestion 
-            key={question.id} 
-            question={question.question}
+            key={question.id}
             options={question.options} 
             onSelect={handleInput} 
             selectedAnswer={currentAnswer}
@@ -108,15 +107,13 @@ const Stepper = () => {
         return (
           <MonthSelector
             key={question.id} 
-            question={question.question}
             onInput={handleInput}
           />
         );
       case QUESTION_TYPES.TEXT_INPUT:
         return (
           <TextInputQuestion 
-            key={question.id} 
-            question={question.question}
+            key={question.id}
             limit={question.limit}
             onInput={handleInput}
             currentAnswer={currentAnswer}
@@ -149,7 +146,10 @@ const Stepper = () => {
         <h2 className='title'>{FORCE_PLAN}</h2>
         {currentQuestion ? (
           <>
-            {renderQuestion(currentQuestion)}
+            <div className="question-container">
+              <h3 className="sub-title">{currentQuestion.question}</h3>
+              {renderQuestion(currentQuestion)}
+            </div>
           </>
         ) : (
           <p>{COMPLETED_CUESTIONNAIRE}</p>

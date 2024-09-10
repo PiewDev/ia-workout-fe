@@ -3,7 +3,7 @@ import './MonthSelector.css';
 import PositionButton from './components/PositionButton.jsx';
 import ValueDisplay from './components/ValueDisplay.jsx';
 
-const TimePicker = ({ question, onInput }) => {
+const TimePicker = ({ onInput }) => {
   const [years, setYears] = useState(0);
   const [months, setMonths] = useState(0);
 
@@ -53,27 +53,26 @@ const TimePicker = ({ question, onInput }) => {
  
 
   return (
-    <div className="question-container">
-      <h3 className="sub-title">{question}</h3>
-      <div className="outer-container" tabIndex={0}>
-        <div className="container">
-          <div className="column">
-            <PositionButton onClick={incrementYears} position="top">
-            </PositionButton>
-            <ValueDisplay value={years} onChange={handleYearChange} label="años" />
-            <PositionButton onClick={decrementYears} position="bottom">
-            </PositionButton>
-          </div>
-          <div className="column">
-            <PositionButton onClick={incrementMonths} position="top">
-            </PositionButton>
-            <ValueDisplay value={months} onChange={handleMonthChange} label="meses" />
-            <PositionButton onClick={decrementMonths} position="bottom">
-            </PositionButton>
-          </div>
+    
+    <div className="outer-container" tabIndex={0}>
+      <div className="container">
+        <div className="column">
+          <PositionButton onClick={incrementYears} position="top">
+          </PositionButton>
+          <ValueDisplay value={years} onChange={handleYearChange} label="años" />
+          <PositionButton onClick={decrementYears} position="bottom">
+          </PositionButton>
+        </div>
+        <div className="column">
+          <PositionButton onClick={incrementMonths} position="top">
+          </PositionButton>
+          <ValueDisplay value={months} onChange={handleMonthChange} label="meses" />
+          <PositionButton onClick={decrementMonths} position="bottom">
+          </PositionButton>
         </div>
       </div>
     </div>
+   
   );
 };
 
