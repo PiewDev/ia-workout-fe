@@ -1,4 +1,4 @@
-export default async function getRoutine(answers) {
+export default async function getRoutine (answers) {
   try {
     const answersBody = JSON.stringify(answers);
     const response = await fetch('http://localhost:3000/routine', {

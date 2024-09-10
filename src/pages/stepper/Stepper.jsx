@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getQuestions } from '../../services/questions/getQuestions.js';
-import  getRoutine from '../../services/routine/getRoutine.js'
+import  getRoutine from '../../services/routine/getRoutine.js';
 import OptionsQuestion from './components/options-question/OptionsQuestion.jsx';
 import NumericInputQuestion from './components/numeric-input-question/NumericInputQuestion.jsx';
 import TextInputQuestion from './components/text-input-question/TextInputQuestion.jsx';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
-import './Stepper.css'
+import './Stepper.css';
 import Button from '../../components/button/Button.jsx';
 import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT, QUESTION_TYPES } from '../../utils/textConstant.js';
 import { useAppProvider } from '../context-provider/AppProvider.jsx';
@@ -49,7 +49,9 @@ const Stepper = () => {
   };
 
   const handleNext = () => {
-    if (currentAnswer === null || currentAnswer === undefined) return;
+    if (currentAnswer === null || currentAnswer === undefined) {
+      return;
+    }
     const newAnswers = [...answers, { questionId: currentQuestion.id, answer: currentAnswer }];
     setAnswers(newAnswers);
     let nextQuestion = null;
@@ -70,7 +72,7 @@ const Stepper = () => {
       setCurrentQuestion(nextQuestion);
       setCurrentAnswer(null);
     } else {
-     finishQuestionnaire(newAnswers);
+      finishQuestionnaire(newAnswers);
     }
   };
 
@@ -79,11 +81,11 @@ const Stepper = () => {
     setLoading(true);
     // Simulación de envío de datos al backend
     const formattedAnswers = finalAnswers.map(({ questionId, answer }) => ({
-        questionId,
-        answer: answer.toString(  )
-      }));    
+      questionId,
+      answer: answer.toString()
+    }));    
     const newRoutine = await getRoutine(formattedAnswers);
-    console.log(newRoutine)
+    console.log(newRoutine);
     updateRoutine(newRoutine);
     await new Promise((resolve) => setTimeout(resolve, 500));
     navigate('/routine');
@@ -95,12 +97,12 @@ const Stepper = () => {
       case QUESTION_TYPES.OPTIONS:
         return (
           <OptionsQuestion 
-          key={question.id} 
-          question={question.question}
-          options={question.options} 
-          onSelect={handleInput} 
-          selectedAnswer={currentAnswer}
-        />
+            key={question.id} 
+            question={question.question}
+            options={question.options} 
+            onSelect={handleInput} 
+            selectedAnswer={currentAnswer}
+          />
         );
       case QUESTION_TYPES.NUMERIC_INPUT:
         return (
@@ -158,7 +160,7 @@ const Stepper = () => {
       </div>
     </div>
   );
-}
+};
 
 
 // PropTypes para validación de props

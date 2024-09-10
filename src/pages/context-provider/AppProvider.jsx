@@ -7,8 +7,8 @@ export const AppProvider = ({ children }) => {
   
   const [routine, setRoutine] = useState(null);
   const updateRoutine = (newValue) => {
-    setRoutine(newValue)
-  }
+    setRoutine(newValue);
+  };
 
   return (
     <AppProviderContext.Provider value={{ routine, updateRoutine  }}>

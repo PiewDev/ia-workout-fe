@@ -24,4 +24,4 @@ export const SYMBOLS = {
   KG : 'Kg.',
   PR_PERCENT : 'PR%: ',
   RIR : 'RIR:'
-}
+};
