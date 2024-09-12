@@ -114,7 +114,6 @@ const Stepper = () => {
           <>
             <div className="question-container">
               <h3 className="sub-title">{currentQuestion.question}</h3>
-              {console.log('primer llamado',currentQuestion)}
               <Steps
                 currentQuestion={ currentQuestion }
                 handleInput={handleInput}

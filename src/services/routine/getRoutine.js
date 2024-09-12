@@ -1,7 +1,9 @@
+import { URL_BACK } from '../../utils/textConstant';
+
 export default async function getRoutine (answers) {
   try {
     const answersBody = JSON.stringify(answers);
-    const response = await fetch('https://distopicworkout-be.vercel.app/routine', {
+    const response = await fetch(`${URL_BACK}routine`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
