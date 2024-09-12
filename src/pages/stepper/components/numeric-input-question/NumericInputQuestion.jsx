@@ -1,7 +1,6 @@
-export default function NumericInputQuestion ({ question, placeholder, onInput, currentAnswer }) { 
+const NumericInputQuestion = ({ placeholder, onInput, currentAnswer }) => {
   return (
     <div className="question-container">
-      <h3 className="sub-title">{question}</h3>
       <input
         type="number"
         placeholder={placeholder}
@@ -11,4 +10,6 @@ export default function NumericInputQuestion ({ question, placeholder, onInput, 
       />
     </div>
   );
-}
+};
+
+export default NumericInputQuestion;

@@ -1,16 +1,16 @@
 import { useState, useCallback, useEffect } from 'react';
-import './TimePicker.css';
+import './MonthsSelector.css';
 import PositionButton from './components/PositionButton.jsx';
 import ValueDisplay from './components/ValueDisplay.jsx';
 
-const TimePicker = ({ onChange }) => {
+const MonthsSelector = ({ onInput }) => {
   const [years, setYears] = useState(0);
   const [months, setMonths] = useState(0);
 
   const updateTotalMonths = useCallback(() => {
     const totalMonths = years * 12 + months;
-    onChange(totalMonths);
-  }, [years, months, onChange]);
+    onInput(totalMonths);
+  }, [years, months, onInput]);
 
   useEffect(() => {
     updateTotalMonths();
@@ -50,9 +50,10 @@ const TimePicker = ({ onChange }) => {
       setMonths(newValue % 12);
     }
   }, []);
- 
+
 
   return (
+
     <div className="outer-container" tabIndex={0}>
       <div className="container">
         <div className="column">
@@ -71,7 +72,8 @@ const TimePicker = ({ onChange }) => {
         </div>
       </div>
     </div>
+
   );
 };
 
-export default TimePicker;
+export default MonthsSelector;

@@ -40,7 +40,6 @@
     cursor: not-allowed;      
     box-shadow: 0 0 10px #000000;
   }
-  
 .option-button.selected{
     
   background-color: rgb(var(--space-yellow));
