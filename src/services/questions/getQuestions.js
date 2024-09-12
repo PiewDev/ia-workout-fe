@@ -1,6 +1,8 @@
+import { URL_BACK } from '../../utils/textConstant';
+
 export const getQuestions = async () => {
   try {
-    const response = await fetch('http://localhost:3000/questions');
+    const response = await fetch(`${URL_BACK}questions`);
     if (!response.ok) {
       throw new Error('La respuesta del servidor no fue favorable');
     }

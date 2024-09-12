@@ -1,19 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
 body{
   background-image: url('/fondoQuestionarie.png');
 }
+
 .background-overlay{
   position: absolute;
-top: 0;
-left: 0;
-display: flex;
-flex-direction: column;
-width: 100%;
-height: 100%;
-justify-content: center;
-background-color: rgba(var(--nebula));;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  background-color: rgba(var(--nebula));
 }
-.stepper-container {     
+
+.spinner-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.stepper-container {
+  width: 500px;
   font-size: 1.2rem;
+  font-family: 'Chakra Petch', sans-serif;
+  letter-spacing: 1px;
   max-width: 600px;
   margin: 0 auto;
   background-color: rgba(var(--space));
@@ -24,14 +36,16 @@ background-color: rgba(var(--nebula));;
   transition: all 0.3s ease;
 }
 .stepper-container:hover{
-background-color: rgba(var(--deep-space));
-box-shadow: 0 0 15px rgb(var(--space-yellow)), 0 0 30px rgb(var(--space-green));
+  background-color: rgba(var(--deep-space));
+  box-shadow: 0 0 15px rgb(var(--space-yellow)), 0 0 30px rgb(var(--space-green));
 }
 
 .question-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  justify-content: center;
+
 }
 
 .title {
@@ -39,6 +53,7 @@ box-shadow: 0 0 15px rgb(var(--space-yellow)), 0 0 30px rgb(var(--space-green));
   color: rgb(var(--space-green));
   transition: all 0.3s ease;
   cursor: default;
+  letter-spacing: 1px;
 }
 
 .sub-title {  
@@ -46,6 +61,7 @@ box-shadow: 0 0 15px rgb(var(--space-yellow)), 0 0 30px rgb(var(--space-green));
   color: rgb(var(--space-green));
   transition: all 0.3s ease;
   cursor: default;
+  letter-spacing: 1px;
 }
 
 .numeric-input,

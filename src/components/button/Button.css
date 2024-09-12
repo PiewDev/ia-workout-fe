@@ -1,5 +1,8 @@
-.option-button:hover{
-  
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+.option-button {
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
   background-color: rgb(var(--space-green));
   box-shadow: 0 0 10px rgb(var(--space-yellow));
   transform: scale(1.05);
@@ -32,7 +35,7 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: bold;
-    
+    font-family: 'Chakra Petch', sans-serif;
     cursor: not-allowed;
   }
   .option-button.disabled {
@@ -41,7 +44,6 @@
     box-shadow: 0 0 10px #000000;
   }
 .option-button.selected{
-    
   background-color: rgb(var(--space-yellow));
 }
 .option-button.selected:hover {
