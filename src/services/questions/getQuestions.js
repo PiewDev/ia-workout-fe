@@ -1,6 +1,6 @@
 export const getQuestions = async () => {
   try {
-    const response = await fetch('http://localhost:3000/questions');
+    const response = await fetch('https://distopicworkout-be.vercel.app/questions');
     if (!response.ok) {
       throw new Error('La respuesta del servidor no fue favorable');
     }

@@ -26,6 +26,7 @@ module.exports = {
     'space-in-parens': ['error', 'never'],
     'space-before-function-paren': ['error', 'always'],
     'keyword-spacing': ['error', { before: true, after: true }],
+    'no-multiple-empty-lines': ['error', { 'max': 1 }],
     'object-curly-spacing': ['error', 'always'],
     'array-bracket-spacing': ['error', 'never'],
     'quotes': ['error', 'single', { avoidEscape: true }], // Usar comillas simples

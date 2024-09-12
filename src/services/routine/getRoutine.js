@@ -1,7 +1,7 @@
 export default async function getRoutine (answers) {
   try {
     const answersBody = JSON.stringify(answers);
-    const response = await fetch('http://localhost:3000/routine', {
+    const response = await fetch('https://distopicworkout-be.vercel.app/routine', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

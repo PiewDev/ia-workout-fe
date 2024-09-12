@@ -15,7 +15,7 @@ export const QUESTION_TYPES = {
   TEXT_INPUT: 'text-input',
   NUMERIC_INPUT: 'numeric-input',
 };
-export const FORCE_PLAN = 'Plan de Entrenamiento de Fuerza';
+export const FORCE_PLAN = 'Plan de Entrenamiento';
 export const COMPLETED_CUESTIONNAIRE = 'El cuestionario ha finalizado. ¡Gracias por tu participación!';
 export const NEXT = 'Next';
 export const SYMBOLS = {
@@ -25,3 +25,5 @@ export const SYMBOLS = {
   PR_PERCENT : 'PR%: ',
   RIR : 'RIR:'
 };
+
+export const URL_BACK = import.meta.env.VITE_URL_BACK;

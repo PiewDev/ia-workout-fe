@@ -7,7 +7,7 @@ import Button from '../../components/button/Button.jsx';
 import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT } from '../../utils/textConstant.js';
 import { useAppProvider } from '../context-provider/AppProvider.jsx';
 import { useNavigate } from 'react-router-dom';
-import Steps from '../../components/steps/Steps.jsx';
+import Steps from '../../components/Steps/Steps.jsx';
 
 // Componente principal Stepper
 
@@ -73,7 +73,6 @@ const Stepper = () => {
     }
   };
 
-
   const finishQuestionnaire = async (finalAnswers) => {
     setLoading(true);
 
@@ -92,7 +91,9 @@ const Stepper = () => {
   if (loading) {
     return (
       <div className="stepper-container">
-        <LoadingSpinner />
+        <div className="spinner-container">
+          <LoadingSpinner />
+        </div>
       </div>
     );
   }

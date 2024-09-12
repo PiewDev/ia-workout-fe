@@ -1,51 +1,52 @@
-.option-button:hover{
-  
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+.option-button {
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
   background-color: rgb(var(--space-green));
-  color: rgb(var(--space-yellow));
-  box-shadow: 0 0 20px rgb(var(--space-yellow));
-  transform: scale(1.05);
-  }
-  .option-button {
-    
-    margin: 10px;
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    background-color: rgb(var(--space-green));
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgb(var(--space-yellow));
-  }
-  .option-button:disabled:hover {
-    margin: 10px;
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    background-color: #bdc3c7;
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    
-    cursor: not-allowed;
-  }
-  .option-button.disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;      
-    box-shadow: 0 0 10px #000000;
-  }
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: 'Chakra Petch', sans-serif;
+  box-shadow: 0 0 10px rgb(var(--space-yellow));
+}
 
-  .option-button.selected {
+.option-button:hover{
   background-color: rgb(var(--space-green));
   color: rgb(var(--space-yellow));
   box-shadow: 0 0 20px rgb(var(--space-yellow));
   transform: scale(1.05);
-  }
+}
+
+.option-button:disabled:hover {
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: #bdc3c7;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  cursor: not-allowed;
+}
+.option-button.disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;      
+  box-shadow: 0 0 10px #000000;
+}
+
+.option-button.selected {
+  background-color: rgb(var(--space-green));
+  color: rgb(var(--space-yellow));
+  box-shadow: 0 0 20px rgb(var(--space-yellow));
+  transform: scale(1.05);
+}
