@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect } from 'react';
-import './MonthSelector.css';
+import './MonthsSelector.css';
 import PositionButton from './components/PositionButton.jsx';
 import ValueDisplay from './components/ValueDisplay.jsx';
 
-const TimePicker = ({ onInput }) => {
+const MonthsSelector = ({ onInput }) => {
   const [years, setYears] = useState(0);
   const [months, setMonths] = useState(0);
 
@@ -50,10 +50,10 @@ const TimePicker = ({ onInput }) => {
       setMonths(newValue % 12);
     }
   }, []);
- 
+
 
   return (
-    
+
     <div className="outer-container" tabIndex={0}>
       <div className="container">
         <div className="column">
@@ -72,8 +72,8 @@ const TimePicker = ({ onInput }) => {
         </div>
       </div>
     </div>
-   
+
   );
 };
 
-export default TimePicker;
+export default MonthsSelector;
