@@ -6,7 +6,7 @@ import { DAYS_PER_WEEK, PLAN_TYPE, } from '../../utils/textConstant.js';
 import { useAppProvider } from '../context-provider/AppProvider.jsx';
 import { useNavigate } from 'react-router-dom';
 
-export default function Routine () {
+const Routine = () => {
   const [showAbout, setShowAbout] = useState(false);
 
   const { routine } = useAppProvider();
@@ -38,4 +38,6 @@ export default function Routine () {
       ))}
     </div>
   );
-}
+};
+
+export default Routine;

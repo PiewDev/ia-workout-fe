@@ -42,3 +42,10 @@
     cursor: not-allowed;      
     box-shadow: 0 0 10px #000000;
   }
+
+  .option-button.selected {
+  background-color: rgb(var(--space-green));
+  color: rgb(var(--space-yellow));
+  box-shadow: 0 0 20px rgb(var(--space-yellow));
+  transform: scale(1.05);
+  }

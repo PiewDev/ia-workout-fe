@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { getQuestions } from '../../services/questions/getQuestions.js';
 import  getRoutine from '../../services/routine/getRoutine.js';
-import OptionsQuestion from './components/options-question/OptionsQuestion.jsx';
-import NumericInputQuestion from './components/numeric-input-question/NumericInputQuestion.jsx';
-import TextInputQuestion from './components/text-input-question/TextInputQuestion.jsx';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
 import './Stepper.css';
 import Button from '../../components/button/Button.jsx';
-import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT, QUESTION_TYPES } from '../../utils/textConstant.js';
+import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT } from '../../utils/textConstant.js';
 import { useAppProvider } from '../context-provider/AppProvider.jsx';
 import { useNavigate } from 'react-router-dom';
+import Steps from '../../components/steps/Steps.jsx';
 
 // Componente principal Stepper
 
@@ -26,7 +23,7 @@ const Stepper = () => {
 
   const navigate = useNavigate();
 
-  const fetchInitialData = async () => {    
+  const fetchInitialData = async () => {
     setLoading(true);
     setError(null);
     try {
@@ -79,54 +76,17 @@ const Stepper = () => {
 
   const finishQuestionnaire = async (finalAnswers) => {
     setLoading(true);
-    // Simulación de envío de datos al backend
+
     const formattedAnswers = finalAnswers.map(({ questionId, answer }) => ({
       questionId,
       answer: answer.toString()
-    }));    
+    }));
     const newRoutine = await getRoutine(formattedAnswers);
     console.log(newRoutine);
     updateRoutine(newRoutine);
     await new Promise((resolve) => setTimeout(resolve, 500));
     navigate('/routine');
     setLoading(false);
-  };
-
-  const renderQuestion = (question) => {
-    switch (question.type) {
-      case QUESTION_TYPES.OPTIONS:
-        return (
-          <OptionsQuestion 
-            key={question.id} 
-            question={question.question}
-            options={question.options} 
-            onSelect={handleInput} 
-            selectedAnswer={currentAnswer}
-          />
-        );
-      case QUESTION_TYPES.NUMERIC_INPUT:
-        return (
-          <NumericInputQuestion 
-            key={question.id} 
-            question={question.question}
-            placeholder={question.placeholder}
-            onInput={handleInput}
-            currentAnswer={currentAnswer}
-          />
-        );
-      case QUESTION_TYPES.TEXT_INPUT:
-        return (
-          <TextInputQuestion 
-            key={question.id} 
-            question={question.question}
-            limit={question.limit}
-            onInput={handleInput}
-            currentAnswer={currentAnswer}
-          />
-        );
-      default:
-        return null;
-    }
   };
 
   if (loading) {
@@ -151,40 +111,23 @@ const Stepper = () => {
         <h2 className='title'>{FORCE_PLAN}</h2>
         {currentQuestion ? (
           <>
-            {renderQuestion(currentQuestion)}
+            <div className="question-container">
+              <h3 className="sub-title">{currentQuestion.question}</h3>
+              {console.log('primer llamado',currentQuestion)}
+              <Steps
+                currentQuestion={ currentQuestion }
+                handleInput={handleInput}
+                currentAnswer={currentAnswer}
+              />
+            </div>
           </>
         ) : (
           <p>{COMPLETED_CUESTIONNAIRE}</p>
         )}
-        <Button onClick={handleNext} isDisabled={currentAnswer === null}>{NEXT}</Button>
+        <Button onClick={handleNext} isDisabled={!currentAnswer}>{NEXT}</Button>
       </div>
     </div>
   );
-};
-
-
-// PropTypes para validación de props
-OptionsQuestion.propTypes = {
-  question: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-  })).isRequired,
-  onSelect: PropTypes.func.isRequired,
-  selectedAnswer: PropTypes.string,
-};
-
-NumericInputQuestion.propTypes = {
-  question: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  onInput: PropTypes.func.isRequired,
-  currentAnswer: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-TextInputQuestion.propTypes = {
-  question: PropTypes.string.isRequired,
-  limit: PropTypes.number.isRequired,
-  onInput: PropTypes.func.isRequired,
-  currentAnswer: PropTypes.string,
 };
 
 export default Stepper;

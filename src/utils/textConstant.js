@@ -10,10 +10,10 @@ export const APP_DESCRIPTION = 'utiliza inteligencia artificial avanzada para ge
 export const CREATE_ROUTINE = 'Crear Rutina';
 export const NO_OPTIONS_AVAILABLE = 'No hay opciones disponibles.';
 export const QUESTION_TYPES = {
-  OPTIONS : 'options',
+  OPTIONS: 'options',
+  MONTHS_SELECTOR: 'months-selector',
+  TEXT_INPUT: 'text-input',
   NUMERIC_INPUT: 'numeric-input',
-  TEXT_INPUT: 'text-input'
-
 };
 export const FORCE_PLAN = 'Plan de Entrenamiento de Fuerza';
 export const COMPLETED_CUESTIONNAIRE = 'El cuestionario ha finalizado. ¡Gracias por tu participación!';
