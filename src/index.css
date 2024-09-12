@@ -12,14 +12,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --space-green: 44, 225, 131;
-  --tecno-green:16, 157, 60;  
-  --space-yellow: 255, 238, 0;
   --space: 0, 0, 0, 0.7;
   --deep-space: 0, 0, 0, 0.8;
-  --nebula: 17, 22, 36, 0.56;
-  --eva: 204, 204, 204;
+  --space-green: 0, 255, 100;
+  --tecno-green:16, 157, 60;  
+  --space-yellow: 204, 255, 0;
   --space-red: 255, 0, 0;
+  --nebula: 17, 22, 36, 0.56;
+  --eva: 204, 204, 204; 
 }
 
 body {
