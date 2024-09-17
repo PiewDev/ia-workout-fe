@@ -1,43 +1,40 @@
-import { useState,useEffect, useCallback, memo } from 'react';
-import { FaPlus, FaMinus } from 'react-icons/fa';
-
+import { useState,useEffect } from 'react';
+import Tag from '../tag/Tag.jsx';
 import equipmentList from './equipmentList.jsx';
 import './EquipmentSelector.css';
 
+const EquipmentSelector = ({ defaultIdsEquipmentList = [], onSelectionChange = () => {} }) => {
 
+  const [selectedEquipment, setSelectedEquipment] = useState(equipmentList.find(x => x.id === defaultIdsEquipmentList.id) || []);
+  
+  const onSelectEquipment = (newEquipment) => { 
+    const isSelected = selectedEquipment.some(selectedEquipment => selectedEquipment.id === newEquipment.id);
+    newEquipment.isSelected = !isSelected;
 
-const useEquipmentSelection = (defaultEquipment = [], onSelectionChange = () => {}) => {
-  const [selectedEquipment, setSelectedEquipment] = useState(defaultEquipment);
-
-  const toggleEquipment = useCallback((id) => {
-    setSelectedEquipment(prev => {
-      const newSelection = prev.includes(id)
-        ? prev.filter(item => item !== id)
-        : [...prev, id];
-      onSelectionChange(newSelection);
-      return newSelection;
-    });
-  }, [onSelectionChange]);
-
-  return { selectedEquipment, toggleEquipment };
-};
-
-const Tag = memo(function Tag ({ equipment, isSelected, onClick }) {
-  return (
-    <span className={`tag ${isSelected ? 'selected' : ''}`} onClick={onClick}>
-      {equipment.icon} {equipment.name} {isSelected ? <FaMinus className="icon" /> : <FaPlus className="icon" />}
-    </span>
-  );
-});
-
-
-const EquipmentSelector = ({ defaultEquipment = [], onSelectionChange = () => {} }) => {
-  const { selectedEquipment, toggleEquipment } = useEquipmentSelection(defaultEquipment, onSelectionChange);
-
+    const newSelectedEquipment = isSelected ?     
+      selectedEquipment.filter((selectedEquipment) => selectedEquipment.id !== newEquipment.id):
+      [...selectedEquipment, newEquipment]  ;
+   
+    return setSelectedEquipment(newSelectedEquipment);
+  };
+  
   useEffect(() => {
-    onSelectionChange(selectedEquipment);
-  }, []);
+    onSelectionChange(selectedEquipment.map(equipment => equipment.id));
+  }, [selectedEquipment]);
 
+  const renderEquipmentTags = (equipmentList) => {
+    return equipmentList.map(equipment => (
+      <Tag
+        key={equipment.id}  
+        icon={equipment.icon}
+        name={equipment.name}
+        isSelected={equipment.isSelected}
+        onClick={() => onSelectEquipment(equipment)}
+      />
+    ));
+
+  };
+  
   return (
     <>
       <div className="equipment-selector">
@@ -45,34 +42,17 @@ const EquipmentSelector = ({ defaultEquipment = [], onSelectionChange = () => {}
           <h3>Equipo seleccionado:</h3>
           <div className="selected-equipment">
             <div className="scanline"></div>
-            {selectedEquipment.length === 0 ? (
+            {!selectedEquipment.length ? (
               <p className="no-equipment">No hay equipo seleccionado</p>
             ) : (
-              selectedEquipment.map(id => {
-                const equipment = equipmentList.find(e => e.id === id);
-                return (
-                  <Tag
-                    key={id}
-                    equipment={equipment}
-                    isSelected={true}
-                    onClick={() => toggleEquipment(id)}
-                  />
-                );
-              })
+              renderEquipmentTags(selectedEquipment)
             )}
           </div>
         </div>
         <div className="equipment">
           <h3>Equipo disponible:</h3>
           <div className="equipment-container">
-            {equipmentList.map(equipment => (
-              <Tag
-                key={equipment.id}
-                equipment={equipment}
-                isSelected={selectedEquipment.includes(equipment.id)}
-                onClick={() => toggleEquipment(equipment.id)}
-              />
-            ))}
+            { renderEquipmentTags(equipmentList) }
           </div>
         </div>
       </div>
