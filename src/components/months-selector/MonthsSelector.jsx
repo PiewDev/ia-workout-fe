@@ -10,7 +10,7 @@ const MonthsSelector = ({ onInput }) => {
   const updateTotalMonths = useCallback(() => {
     const totalMonths = years * 12 + months;
     onInput(totalMonths);
-  }, [years, months, onInput]);
+  }, [years, months]);
 
   useEffect(() => {
     updateTotalMonths();

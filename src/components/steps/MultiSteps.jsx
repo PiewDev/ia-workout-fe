@@ -4,33 +4,36 @@ import TextInputQuestion from '../../pages/stepper/components/text-input-questio
 import MonthsSelector from '../months-selector/MonthsSelector';
 import { QUESTION_TYPES } from '../../utils/textConstant';
 
-const Steps = ({ currentQuestion, handleInput, currentAnswer }) => {
+const MultiSteps = ({ currentQuestion, handleInput, currentAnswer }) => {
+  function handleMultiInput (currentAnswer) {
+    handleInput(currentQuestion, currentAnswer);
+  }
   const steps = {
     [QUESTION_TYPES.OPTIONS]: (
       <OptionsQuestion
         key={currentQuestion.id}
-        onSelect={handleInput}
+        onSelect={handleMultiInput}
         options={currentQuestion.options}
         currentAnswer={currentAnswer}
       />
     ),
     [QUESTION_TYPES.MONTHS_SELECTOR]: (
       <MonthsSelector
-        onInput={handleInput}
+        onInput={handleMultiInput}
       />
     ),
     [QUESTION_TYPES.TEXT_INPUT]: (
       <TextInputQuestion
         key={currentQuestion.id}
         limit={currentQuestion.limit}
-        onInput={handleInput}
+        onInput={handleMultiInput}
         currentAnswer={currentAnswer}
       />
     ),
     [QUESTION_TYPES.NUMERIC_INPUT]: (
       <NumericInputQuestion
         key={currentQuestion.id}
-        onInput={handleInput}
+        onInput={handleMultiInput}
         currentAnswer={currentAnswer}
       />
     ),
@@ -39,4 +42,4 @@ const Steps = ({ currentQuestion, handleInput, currentAnswer }) => {
 };
 
 
-export default Steps;
+export default MultiSteps;
