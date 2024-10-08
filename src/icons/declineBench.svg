@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="currentColor" width="1.5em" height="1.5em">
+  
+  <!-- Asiento inclinado -->
+  <rect x="10" y="60" width="70" height="8" fill="currentColor"
+        transform="rotate(-20, 10, 50)" />
+  <!-- Patas del banco -->
+  <rect x="20" y="70" width="5" height="10" fill="currentColor"/>
+  <rect x="75" y="45" width="5" height="35" fill="currentColor"/>
+</svg>
