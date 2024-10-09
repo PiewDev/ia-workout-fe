@@ -1,93 +1,127 @@
 import { useState, useEffect } from 'react';
 import { getQuestions } from '../../services/questions/getQuestions.js';
-import  getRoutine from '../../services/routine/getRoutine.js';
 import LoadingSpinner from '../../components/loading-spinner/LoadingSpinner.jsx';
 import './Stepper.css';
 import Button from '../../components/button/Button.jsx';
-import { COMPLETED_CUESTIONNAIRE, FORCE_PLAN, NEXT } from '../../utils/textConstant.js';
-import { useAppProvider } from '../context-provider/AppProvider.jsx';
+import {
+  COMPLETED_CUESTIONNAIRE,
+  FORCE_PLAN,
+  NEXT,
+} from '../../utils/textConstant.js';
+import getRoutine from '../../services/questions/getRoutine.js';
 import { useNavigate } from 'react-router-dom';
-import Steps from '../../components/steps/Steps.jsx';
-
-// Componente principal Stepper
+import { useAppProvider } from '../context-provider/AppProvider.jsx';
+import MultiQuestion from './components/multi-question/MultiQuestion.jsx';
+import SingleQuestion from './components/single-question/SingleQuestion.jsx';
 
 const Stepper = () => {
-  const [questionStack, setQuestionStack] = useState([]);
-  const [currentQuestion, setCurrentQuestion] = useState(null);
-  const [currentAnswer, setCurrentAnswer] = useState(null);
-  const [answers, setAnswers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   const { updateRoutine } = useAppProvider();
 
   const navigate = useNavigate();
+  //El nodo sería el objeto questions que tiene la o las preguntas actuales
+  const [actualNode, setActualNode] = useState([]);
+  
+  //para no perder el hilo al adentrarse en las opciones
+  const [nodeStack, setNodeStack] = useState([]);
+  const [isValidStep, setIsValidStep] = useState(false);
+  const [answers, setAnswers] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const addNodeStack = (newNode) => {
+    //Lo agrego al inicio para después poder quitarlo al recorrerlo y siempre acceder al siguiente usando [0]
+    setNodeStack((prevNodeStack) => [newNode, ...prevNodeStack]);
+  };
+  const removeNodeStack = () => {
+    setNodeStack((prevNodeStack) => prevNodeStack.slice(1));
+  };  
+  const getNextOptionNode = (optionQuestion, selectedOption) => {
+    return optionQuestion.options.find(x=> x.text === selectedOption)?.next?.questions;
+  };  
+  const getSimpleNextNode = () =>{
+    const next = actualNode.find((x) => x.id === 'next');
+    return next?.questions;
+  };  
+  const getNextNode = () => {
+    const nextNode = getSimpleNextNode(); //obtengo el siguiente nodo común, el que no es parte de options
+    const optionQuestion = actualNode.find(x=> x.input?.type === 'options'); //obtengo el objeto options si hay en este nodo 
+    if (optionQuestion) { //Si este nodo es uno de opciones   
+      return manageOptionNode(nextNode,optionQuestion);
+    }
+    if (nextNode) {  // Checkeo si hay un next 
+      return nextNode;
+    }
+    return checkNodeStack(); //Si no hay next veo si me quedó alguno en el stack pendiente  
+  };  
+
+  const manageOptionNode = (nextNode,optionQuestion) =>{
+    if (nextNode) { //Si en donde está options también hay un next 
+      addNodeStack(nextNode); //Lo encolo para recorrerlo cuando me quede sin next 
+    }
+    //obtengo el next de la option elegida 
+    var nextOption = getNextOptionNode(optionQuestion, answers[optionQuestion.id]);
+    if (!nextOption) { //Si es null es porque hasta acá llegó el camino de la option y verifico si tengo para seguir otro camino guardado en el stack
+      return checkNodeStack();
+    }
+    //Si hay un nodo next entonces ese es el siguiente
+    return nextOption;
+  };
+
+  const checkNodeStack = () =>{
+    const nexNodeStack = nodeStack[0]; //Miro el primer nodo guardado
+    if (nexNodeStack) {      //Si existe
+      removeNodeStack(); //Lo remuevo del stack porque lo estoy por recorrer 
+      return nexNodeStack; //Lo devuelvo
+    }
+    return null;
+  };
+
+  const handleNext = () => {
+    const nextNode = getNextNode();
+    if (nextNode) { 
+      setIsValidStep(false); 
+      return setActualNode(nextNode);
+    }
+    finishQuestionnaire(answers);
+  };
+
+  const finishQuestionnaire = async (answers) => {
+    console.log(answers);
+    try {
+      setLoading(true);
+      const newRoutine = await getRoutine(answers);
+      console.log(newRoutine);
+      updateRoutine(newRoutine);
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    } catch (e) {
+      setError(e);
+    } finally {
+      navigate('/routine');
+      setLoading(false);
+    }
+  };
 
   const fetchInitialData = async () => {
     setLoading(true);
     setError(null);
     try {
       const data = await getQuestions();
-      setCurrentQuestion(data);
-      setQuestionStack([data]);
+      setActualNode(data.questions);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
+  const setNewAnswer = (currentQuestion, currentAnswer) => {
+    const newAnswers = { ...answers };
+    newAnswers[currentQuestion.id] = currentAnswer;
+    setAnswers(newAnswers);
+  };
 
   useEffect(() => {
     fetchInitialData();
   }, []);
-
-  const handleInput = (answer) => {
-    setCurrentAnswer(answer);
-  };
-
-  const handleNext = () => {
-    if (currentAnswer === null || currentAnswer === undefined) {
-      return;
-    }
-    const newAnswers = [...answers, { questionId: currentQuestion.id, answer: currentAnswer }];
-    setAnswers(newAnswers);
-    let nextQuestion = null;
-    if (currentQuestion.type === 'options') {
-      const selectedOption = currentQuestion.options.find(opt => opt.text === currentAnswer);
-      if (selectedOption && selectedOption.next) {
-        nextQuestion = selectedOption.next.questions[0];
-      }
-    } else if (currentQuestion.next) {
-      if (Array.isArray(currentQuestion.next.questions)) {
-        nextQuestion = currentQuestion.next.questions[0];
-      } else {
-        nextQuestion = currentQuestion.next;
-      }
-    }
-    if (nextQuestion) {
-      setQuestionStack([...questionStack, nextQuestion]);
-      setCurrentQuestion(nextQuestion);
-      setCurrentAnswer(null);
-    } else {
-      finishQuestionnaire(newAnswers);
-    }
-  };
-
-
-  const finishQuestionnaire = async (finalAnswers) => {
-    setLoading(true);
-
-    const formattedAnswers = finalAnswers.map(({ questionId, answer }) => ({
-      questionId,
-      answer: answer.toString()
-    }));
-    const newRoutine = await getRoutine(formattedAnswers);
-    console.log(newRoutine);
-    updateRoutine(newRoutine);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    navigate('/routine');
-    setLoading(false);
-  };
 
   if (loading) {
     return (
@@ -104,29 +138,39 @@ const Stepper = () => {
       </div>
     );
   }
-
+  const getActualQuestion = () => {
+    
+    return actualNode.find(x => x.id !== 'next');
+  };
   return (
-    <div className='background-overlay'>
+    <div className="background-overlay">
       <div className="stepper-container">
-        <h2 className='title'>{FORCE_PLAN}</h2>
-        {currentQuestion ? (
-          <>
-            <div className="question-container">
-              <h3 className="sub-title">{currentQuestion.question}</h3>
-              {console.log('primer llamado',currentQuestion)}
-              <Steps
-                currentQuestion={ currentQuestion }
-                handleInput={handleInput}
-                currentAnswer={currentAnswer}
+        <h2 className="title">{FORCE_PLAN}</h2>
+        {
+          actualNode ? (
+            actualNode.length > 2 ? (
+              <MultiQuestion
+                questions={actualNode} 
+                setAnswer={setNewAnswer} 
+                setIsValidStep = {setIsValidStep} 
               />
-            </div>
-          </>
-        ) : (
-          <p>{COMPLETED_CUESTIONNAIRE}</p>
-        )}
-        <Button onClick={handleNext} isDisabled={!currentAnswer}>{NEXT}</Button>
+            ) : (
+              <SingleQuestion
+                question={getActualQuestion()}
+                setAnswer={setNewAnswer}
+                setIsValidStep = {setIsValidStep}
+              />
+            )
+          ) : (
+            <p>{COMPLETED_CUESTIONNAIRE}</p>
+          )
+        }
+        <Button onClick={handleNext} isDisabled={!isValidStep}>
+          {NEXT}
+        </Button>
       </div>
     </div>
+  
   );
 };
 
