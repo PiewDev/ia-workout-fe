@@ -5,6 +5,8 @@ import MonthsSelector from '../months-selector/MonthsSelector';
 import { QUESTION_TYPES } from '../../utils/textConstant';
 
 const Steps = ({ currentQuestion, handleInput, currentAnswer }) => {
+
+  console.log(currentAnswer);
   const steps = {
     [QUESTION_TYPES.OPTIONS]: (
       <OptionsQuestion
@@ -22,9 +24,8 @@ const Steps = ({ currentQuestion, handleInput, currentAnswer }) => {
     [QUESTION_TYPES.TEXT_INPUT]: (
       <TextInputQuestion
         key={currentQuestion.id}
-        limit={currentQuestion.limit}
+        limit={currentQuestion.input.maxLength}
         onInput={handleInput}
-        currentAnswer={currentAnswer}
       />
     ),
     [QUESTION_TYPES.NUMERIC_INPUT]: (
