@@ -1,0 +1,9 @@
+<svg viewBox="0 0 20 20" fill="currentColor" width="1em" height="1em">
+    <g>
+        <g transform="translate(-2 -2)">
+            <path d="M20,3V21M4,21V3M19,21h2M3,21H5" stroke="currentColor"
+                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            <line x2="18" transform="translate(3 3)" stroke="currentColor"></line>
+        </g>
+    </g>
+</svg>

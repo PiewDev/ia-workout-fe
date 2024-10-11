@@ -10,7 +10,7 @@ const MonthsSelector = ({ onInput }) => {
   const updateTotalMonths = useCallback(() => {
     const totalMonths = years * 12 + months;
     onInput(totalMonths);
-  }, [years, months, onInput]);
+  }, [years, months]);
 
   useEffect(() => {
     updateTotalMonths();
@@ -51,9 +51,7 @@ const MonthsSelector = ({ onInput }) => {
     }
   }, []);
 
-
   return (
-
     <div className="outer-container" tabIndex={0}>
       <div className="container">
         <div className="column">
@@ -72,7 +70,6 @@ const MonthsSelector = ({ onInput }) => {
         </div>
       </div>
     </div>
-
   );
 };
 

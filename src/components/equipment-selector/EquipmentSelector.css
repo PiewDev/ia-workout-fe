@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+
+.equipment-selector {
+  font-family: 'Chakra Petch', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(17, 22, 36, 0.56);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+  box-shadow: 0 0 30px rgba(var(--space-green), 0.3);
+  animation: glow 4s infinite alternate;
+  display: flex;
+  flex-direction: column;
+}
+
+.question {
+  color: rgb(255, 238, 0);
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(191, 255, 0, 0.7);
+  animation: pulse 2s infinite;
+}
+
+.equipment {
+  align-items: flex-start;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid rgba(var(--space-green), 0.5);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+  padding: 0px 15px 15px 15px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.equipment:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(var(--space-green), 0.4);
+}
+
+.selected-equipment {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+  height: 100px;
+  overflow: auto;
+  --sb-track-color: #000000;
+  --sb-thumb-color: #2ce183;
+  --sb-size: 8px;
+}
+
+.selected-equipment::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+.selected-equipment::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 1px;
+}
+
+.selected-equipment::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 1px;
+  
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .selected-equipment{
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
+.no-equipment {
+  color: rgb(var(--space-yellow));
+  font-style: italic;
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+}
+
+h3 {  
+  color: rgb(var(--space-yellow));
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.equipment-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.tag {
+  height: 35px;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  background-color: rgba(var(--space-green), 0.2);
+  color: rgb(var(--space-green));
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  flex: 0 1 auto;
+  white-space: nowrap;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%);
+}
+
+.tag:hover {
+  background-color: rgba(var(--space-green), 0.3);
+  box-shadow: 0 0 15px rgba(var(--space-green),0.5);
+}
+
+.tag.selected {
+  background-color: rgba(var(--tecno-green), 0.5);
+  color: rgba(var(--space-yellow));
+}
+
+.tag.selected:hover {
+  background-color: rgba(var(--space-green), 0.2);
+  box-shadow: 0 0 15px rgba(var(--space-green), 0.3);
+}
+
+.tag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(var(--space-green), 0.8), transparent);
+  animation: scanline 2s linear infinite;
+  z-index: 1;
+}
+
+.tag .icon {
+  margin-left: 4px;
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow: 0 0 15px rgba(var(--space-yellow), 0.7);
+  }
+
+  50% {
+    text-shadow: 0 0 30px rgba(var(--space-yellow), 0.9);
+  }
+
+  100% {
+    text-shadow: 0 0 15px rgba(var(--space-yellow), 0.7);
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 30px rgba(var(--space-green), 0.3);
+  }
+
+  100% {
+    box-shadow: 0 0 50px rgba(var(--space-green), 0.5);
+  }
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  right: -100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(var(--space-green), 0.8), transparent);
+  animation: scanline 2s linear infinite;
+  z-index: 3;
+}
+
+@keyframes scanline {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}

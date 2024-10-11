@@ -1,17 +1,24 @@
+import { useState } from 'react';
 import { CARACTERS, MAXIMUM } from '../../../../utils/textConstant';
 
-//import '../../Questionaire/Questionnaire.css'
-export default function TextInputQuestion ({ limit, onInput, currentAnswer }) {
+export default function TextInputQuestion ({ limit, onInput }) {
+  const [inputValue, setInputValue] = useState(null);
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    onInput(value);
+  };
+
   return (
     <>
       <textarea
         maxLength={limit}
-        onChange={(e) => onInput(e.target.value)}
-        value={currentAnswer || ''}
+        onChange={handleInputChange}
+        value={inputValue || ''}
         className="text-input"
         placeholder={`${MAXIMUM} ${limit} ${CARACTERS}`}
       />
-    
     </>
   );
 }
