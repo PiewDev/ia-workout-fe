@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ValueDisplay = ({ value, onChange, label }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(value.toString());
   
+  useEffect(() => {
+    setInputValue(value.toString());
+  }, [value]);
+
   const handleClick = () => setIsEditing(true);
   
   const handleBlur = () => {
     setIsEditing(false);
-    onChange(parseInt(inputValue, 10));
+    const numericValue = inputValue === '' ? 0 : Number(inputValue);
+    onChange(numericValue);
   };
   
   const handleInputChange = (e) => {
@@ -17,7 +22,7 @@ const ValueDisplay = ({ value, onChange, label }) => {
       setInputValue(newValue);
     }
   };
-  
+
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleBlur();
@@ -28,6 +33,7 @@ const ValueDisplay = ({ value, onChange, label }) => {
     <div className="value-container" onClick={handleClick}>
       {isEditing ? (
         <input
+          className="value"
           type="text"
           value={inputValue}
           onChange={handleInputChange}
