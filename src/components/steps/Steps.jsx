@@ -3,10 +3,12 @@ import OptionsQuestion from '../../pages/stepper/components/options-question/Opt
 import TextInputQuestion from '../../pages/stepper/components/text-input-question/TextInputQuestion';
 import MonthsSelector from '../months-selector/MonthsSelector';
 import { QUESTION_TYPES } from '../../utils/textConstant';
+import EquipmentSelector from '../equipment-selector/EquipmentSelector';
+import { defaultList } from '../equipment-selector/equipmentList';
 
 const Steps = ({ currentQuestion, handleInput, currentAnswer }) => {
 
-  console.log(currentAnswer);
+  console.log(currentQuestion.input.type);
   const steps = {
     [QUESTION_TYPES.OPTIONS]: (
       <OptionsQuestion
@@ -35,9 +37,14 @@ const Steps = ({ currentQuestion, handleInput, currentAnswer }) => {
         currentAnswer={currentAnswer}
       />
     ),
+    [QUESTION_TYPES.EQUIPMENT_PICKER]: (
+      <EquipmentSelector
+        defaultIdsEquipmentList= {defaultList}
+        onSelectionChange={handleInput}
+      />
+    ),
   };
   return steps[currentQuestion.input.type] || null;
 };
-
 
 export default Steps;

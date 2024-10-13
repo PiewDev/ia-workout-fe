@@ -14,6 +14,7 @@ export const QUESTION_TYPES = {
   MONTHS_SELECTOR: 'months-selector',
   TEXT_INPUT: 'text-input',
   NUMERIC_INPUT: 'numeric-input',
+  EQUIPMENT_PICKER: 'equipment-picker'
 };
 export const FORCE_PLAN = 'Plan de Entrenamiento';
 export const COMPLETED_CUESTIONNAIRE = 'El cuestionario ha finalizado. ¡Gracias por tu participación!';

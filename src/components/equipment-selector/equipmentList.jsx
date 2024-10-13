@@ -11,8 +11,10 @@ import ParallelBarsIcon from '../../icons/parallelBars.svg?react';
 import RowingMachineIcon from '../../icons/rowingMachine.svg?react';
 import AbWheelIcon from '../../icons/abWheel.svg?react';
 import SquatRackIcon from '../../icons/squatRack.svg?react';
+import BodyWeigth from '../../icons/bodyWeigth.svg?react';
 
 import { EQUIPMENT } from './equipmentConstants';
+const defaultList = ['bodyWeigth'];
 const equipmentList = [
   { id: 'dumbbells', name: EQUIPMENT.DUMBBELLS, icon: <DumbbellIcon/> },
   { id: 'barbells', name: EQUIPMENT.BARBELLS, icon: <BarbelllIcon /> },
@@ -26,6 +28,7 @@ const equipmentList = [
   { id: 'rowingMachine', name: EQUIPMENT.ROWING_MACHINE, icon: <RowingMachineIcon /> },
   { id: 'abWheel', name: EQUIPMENT.AB_WHEEL, icon: <AbWheelIcon /> },
   { id: 'squatRack', name: EQUIPMENT.SQUAT_RACK, icon: <SquatRackIcon /> },
+  { id: 'bodyWeigth', name: EQUIPMENT.BODY_WEIGTH, icon: <BodyWeigth /> }
 ];
 
-export default equipmentList;
+export { equipmentList, defaultList };

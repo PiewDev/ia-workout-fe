@@ -10,5 +10,6 @@ export const EQUIPMENT = {
   PARALLEL_BARS : 'Barras Paralelas',
   ROWING_MACHINE : 'Máquina de Remo',
   AB_WHEEL : 'Rueda de Abdominales',
-  SQUAT_RACK : 'Rack de Sentadillas'   
+  SQUAT_RACK: 'Rack de Sentadillas',
+  BODY_WEIGTH: 'Peso Corporal'
 };
