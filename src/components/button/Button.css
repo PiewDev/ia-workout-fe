@@ -8,7 +8,7 @@
   transform: scale(1.05);
   }
   .option-button {
-    
+    width: 360px;
     margin: 10px;
     padding: 12px 24px;
     font-size: 1.2rem;
@@ -50,4 +50,8 @@
   background-color: rgb(var(--space-yellow)); /* Mantiene el color amarillo */
   transform: none; /* Evita la transformación */
   box-shadow: none;
+}
+
+.next {
+  max-width: 110px;
 }

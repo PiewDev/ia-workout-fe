@@ -41,5 +41,4 @@ const MultiSteps = ({ currentQuestion, handleInput, currentAnswer }) => {
   return steps[currentQuestion.input.type] || null;
 };
 
-
 export default MultiSteps;

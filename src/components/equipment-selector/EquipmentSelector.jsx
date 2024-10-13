@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react';
 import Tag from '../tag/Tag.jsx';
-import equipmentList from './equipmentList.jsx';
+import { equipmentList } from './equipmentList.jsx';
 import './EquipmentSelector.css';
 
 const EquipmentSelector = ({ defaultIdsEquipmentList = [], onSelectionChange = () => {} }) => {
@@ -17,6 +17,10 @@ const EquipmentSelector = ({ defaultIdsEquipmentList = [], onSelectionChange = (
    
     return setSelectedEquipment(newSelectedEquipment);
   };
+
+  useEffect(() => {
+    defaultIdsEquipmentList.forEach(x => onSelectEquipment(equipmentList.find(equipment=> equipment.id === x)));
+  }, []);
   
   useEffect(() => {
     onSelectionChange(selectedEquipment.map(equipment => equipment.id));

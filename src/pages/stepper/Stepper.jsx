@@ -167,7 +167,7 @@ const Stepper = () => {
             <p>{COMPLETED_CUESTIONNAIRE}</p>
           )
         }
-        <Button onClick={handleNext} isDisabled={!isValidStep}>
+        <Button onClick={handleNext} isDisabled={!isValidStep} isNext={true}>
           {NEXT}
         </Button>
       </div>
