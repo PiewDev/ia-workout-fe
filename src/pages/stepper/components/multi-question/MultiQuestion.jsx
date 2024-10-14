@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import MultiSteps from '../../../../components/steps/MultiSteps';
-
+import './MultiQuestion.css';
 //mover a otro archivo
 const MultiQuestion = ({ questions, setAnswer, setIsValidStep }) => {
   const [currentAnswers, setCurrentAnswers] = useState({});
@@ -28,21 +28,23 @@ const MultiQuestion = ({ questions, setAnswer, setIsValidStep }) => {
   }, []);
 
   return (
-    <>
-      <h3 className="sub-title">{title}</h3>
-      <div className="question-container">
+    <div className='multi-question'>
+      <h2 className="title">{title}</h2>
+      <div className="multi-question-container">
         {currentQuestions.map((question) => (
-          <div key={question.id}>
-            <h3 className="sub-title">{question.question}</h3>
-            <MultiSteps
-              currentQuestion={question}
-              handleInput={handleInput}
-              currentAnswer={currentAnswers[question.id]}
-            />
+          <div className="multi-question-body" key={question.id}>
+            <h3 className="sub-title">{question.question}</h3>            
+            <div className='question-container'>
+              <MultiSteps
+                currentQuestion={question}
+                handleInput={handleInput}
+                currentAnswer={currentAnswers[question.id]}
+              />
+            </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

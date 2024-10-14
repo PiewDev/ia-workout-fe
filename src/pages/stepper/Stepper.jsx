@@ -5,7 +5,6 @@ import './Stepper.css';
 import Button from '../../components/button/Button.jsx';
 import {
   COMPLETED_CUESTIONNAIRE,
-  FORCE_PLAN,
   NEXT,
 } from '../../utils/textConstant.js';
 import getRoutine from '../../services/questions/getRoutine.js';
@@ -29,7 +28,6 @@ const Stepper = () => {
   const [error, setError] = useState(null);
 
   const addNodeStack = (newNode) => {
-    //Lo agrego al inicio para después poder quitarlo al recorrerlo y siempre acceder al siguiente usando [0]
     setNodeStack((prevNodeStack) => [newNode, ...prevNodeStack]);
   };
   const removeNodeStack = () => {
@@ -55,15 +53,16 @@ const Stepper = () => {
   };  
 
   const manageOptionNode = (nextNode,optionQuestion) =>{
-    if (nextNode) { //Si en donde está options también hay un next 
-      addNodeStack(nextNode); //Lo encolo para recorrerlo cuando me quede sin next 
+    var nextOption = getNextOptionNode(optionQuestion, answers[optionQuestion.id]);    
+    if (!nextOption && nextNode) {
+      return nextNode;
     }
-    //obtengo el next de la option elegida 
-    var nextOption = getNextOptionNode(optionQuestion, answers[optionQuestion.id]);
-    if (!nextOption) { //Si es null es porque hasta acá llegó el camino de la option y verifico si tengo para seguir otro camino guardado en el stack
+    if (nextNode) {
+      addNodeStack(nextNode);
+    }
+    if (!nextOption) {
       return checkNodeStack();
     }
-    //Si hay un nodo next entonces ese es el siguiente
     return nextOption;
   };
 
@@ -123,6 +122,9 @@ const Stepper = () => {
     fetchInitialData();
   }, []);
 
+  useEffect(() => {
+    console.log('cambio', nodeStack);
+  }, [nodeStack]); 
   if (loading) {
     return (
       <div className="stepper-container">
@@ -143,34 +145,34 @@ const Stepper = () => {
     return actualNode.find(x => x.id !== 'next');
   };
   return (
-    <div className="background-overlay">
-      <div className="stepper-container">
-        <h2 className="title">{FORCE_PLAN}</h2>
-        {
-          actualNode ? (
-            actualNode.length > 2 ? (
-              <MultiQuestion
-                questions={actualNode} 
-                setAnswer={setNewAnswer} 
-                setIsValidStep = {setIsValidStep} 
-              />
+    <div className='stepper'>
+      <div className="background-overlay">
+        <div className="stepper-container">
+          {
+            actualNode ? (
+              actualNode.length > 2 ? (
+                <MultiQuestion
+                  questions={actualNode} 
+                  setAnswer={setNewAnswer} 
+                  setIsValidStep = {setIsValidStep} 
+                />
+              ) : (
+                <SingleQuestion
+                  question={getActualQuestion()}
+                  setAnswer={setNewAnswer}
+                  setIsValidStep = {setIsValidStep}
+                />
+              )
             ) : (
-              <SingleQuestion
-                question={getActualQuestion()}
-                setAnswer={setNewAnswer}
-                setIsValidStep = {setIsValidStep}
-              />
+              <p>{COMPLETED_CUESTIONNAIRE}</p>
             )
-          ) : (
-            <p>{COMPLETED_CUESTIONNAIRE}</p>
-          )
-        }
-        <Button onClick={handleNext} isDisabled={!isValidStep}>
-          {NEXT}
-        </Button>
+          }
+          <Button onClick={handleNext} isDisabled={!isValidStep}>
+            {NEXT}
+          </Button>
+        </div>
       </div>
-    </div>
-  
+    </div>  
   );
 };
 

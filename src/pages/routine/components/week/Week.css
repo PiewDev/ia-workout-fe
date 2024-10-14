@@ -3,10 +3,11 @@
   border: 1px solid rgb(var(--eva));
   border-radius: 4px;
   padding: 1rem;
-}
 
-.week-purpose {
-  font-size: 0.875rem;
-  color: #666;
-  margin-bottom: 1rem;
+
+  .week-purpose {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
 }

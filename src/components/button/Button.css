@@ -1,51 +1,58 @@
-.option-button:hover{
-  
+.option-button:hover {
+
   background-color: rgb(var(--space-green));
   box-shadow: 0 0 10px rgb(var(--space-yellow));
   transform: scale(1.05);
-  }
-  .option-button {
-    
-    margin: 10px;
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    background-color: rgb(var(--space-green));
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-  }
-  .option-button:disabled:hover {
-    margin: 10px;
-    padding: 12px 24px;
-    font-size: 1.2rem;
-    background-color: rgb(var(--space-yellow),0.6);
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-    
-    cursor: not-allowed;
-  }
-  .option-button.disabled {
-    background-color: rgb(var(--space-yellow),0.6);
-    cursor: not-allowed;      
-    box-shadow: 0 0 10px #000000;
-  }
-.option-button.selected{
-    
+}
+
+.option-button {
+
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: rgb(var(--space-green));
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.option-button:disabled:hover {
+  margin: 10px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: rgb(var(--space-yellow), 0.6);
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+
+  cursor: not-allowed;
+}
+
+.option-button.disabled {
+  background-color: rgb(var(--space-yellow), 0.6);
+  cursor: not-allowed;
+  box-shadow: 0 0 10px #000000;
+}
+
+.option-button.selected {
+
   background-color: rgb(var(--space-yellow));
 }
+
 .option-button.selected:hover {
-  background-color: rgb(var(--space-yellow)); /* Mantiene el color amarillo */
-  transform: none; /* Evita la transformación */
+  background-color: rgb(var(--space-yellow));
+  /* Mantiene el color amarillo */
+  transform: none;
+  /* Evita la transformación */
   box-shadow: none;
 }

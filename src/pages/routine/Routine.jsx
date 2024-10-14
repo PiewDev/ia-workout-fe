@@ -18,7 +18,7 @@ const Routine = () => {
   const { plan } = routine;
   
   return (
-    <div className="training-plan">
+    <div className="routine">
       <h1 className='routine-title'>{plan.name}</h1>
       <p>{PLAN_TYPE} {plan.planType}</p>
       <p>{DAYS_PER_WEEK} {plan.daysPeerWeek}</p>

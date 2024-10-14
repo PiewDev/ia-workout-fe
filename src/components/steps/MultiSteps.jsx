@@ -1,16 +1,15 @@
 import NumericInputQuestion from '../../pages/stepper/components/numeric-input-question/NumericInputQuestion';
-import OptionsQuestion from '../../pages/stepper/components/options-question/OptionsQuestion';
 import TextInputQuestion from '../../pages/stepper/components/text-input-question/TextInputQuestion';
 import MonthsSelector from '../months-selector/MonthsSelector';
 import { QUESTION_TYPES } from '../../utils/textConstant';
-
+import DropdownOptions from '../../pages/stepper/components/dropdown-options/DropdownOptions';
 const MultiSteps = ({ currentQuestion, handleInput, currentAnswer }) => {
   function handleMultiInput (currentAnswer) {
     handleInput(currentQuestion, currentAnswer);
   }
   const steps = {
     [QUESTION_TYPES.OPTIONS]: (
-      <OptionsQuestion
+      <DropdownOptions
         key={currentQuestion.id}
         onSelect={handleMultiInput}
         options={currentQuestion.options}
@@ -35,6 +34,8 @@ const MultiSteps = ({ currentQuestion, handleInput, currentAnswer }) => {
         key={currentQuestion.id}
         onInput={handleMultiInput}
         currentAnswer={currentAnswer}
+        placeholder={currentQuestion.input.placeholder}
+        maxLength={currentQuestion.input.maxLength}
       />
     ),
   };

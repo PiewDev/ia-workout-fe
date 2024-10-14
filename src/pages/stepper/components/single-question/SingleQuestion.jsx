@@ -15,14 +15,16 @@ const SingleQuestion = ({ question, setAnswer, setIsValidStep }) => {
   };
 
   return (
-    <div className="question-container">
-      <h3 className="sub-title">{question.question}</h3>
-      <Steps
-        currentQuestion={question}
-        handleInput={handleInput}
-        currentAnswer={currentAnswer}
-      />
-    </div>
+    <>
+      <h2 className="title">{question.question}</h2>
+      <div className='question-container'>
+        <Steps
+          currentQuestion={question}
+          handleInput={handleInput}
+          currentAnswer={currentAnswer}
+        />
+      </div>
+    </>
   );
 };
 
