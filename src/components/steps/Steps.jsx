@@ -8,7 +8,7 @@ import { defaultList } from '../equipment-selector/equipmentList';
 
 const Steps = ({ currentQuestion, handleInput, currentAnswer }) => {
 
-  console.log(currentQuestion.input.type);
+  console.log(currentQuestion.input.type, 'question type');
   const steps = {
     [QUESTION_TYPES.OPTIONS]: (
       <OptionsQuestion
